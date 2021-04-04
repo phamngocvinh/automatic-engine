@@ -224,6 +224,9 @@ namespace automatic_engine
                 // エラーメッセージを表示する
                 System.Windows.Forms.MessageBox.Show("Please input Path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                // エラーコントロールをフォーカスする
+                TxtPath.Focus();
+
                 // チェック結果がFALSEを戻す
                 return false;
             }
@@ -233,18 +236,23 @@ namespace automatic_engine
                 // エラーメッセージを表示する
                 System.Windows.Forms.MessageBox.Show("Path not exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+                // エラーコントロールをフォーカスする
+                TxtPath.Focus();
+
                 // チェック結果がFALSEを戻す
                 return false;
             }
             // Raplce-Withの場合
             else if (type.Contains(CHECK_TYPE.REPLACE_WITH))
             {
-                // 変更前または変更後条件が入力されていない場合、エラーになる。
-                if (string.IsNullOrEmpty(TxtReplace.Text)
-                    || string.IsNullOrEmpty(TxtWith.Text))
+                // 変更前条件が入力されていない場合、エラーになる。
+                if (string.IsNullOrEmpty(TxtReplace.Text))
                 {
                     // エラーメッセージを表示する
                     System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtReplace.Focus();
 
                     // チェック結果がFALSEを戻す
                     return false;
