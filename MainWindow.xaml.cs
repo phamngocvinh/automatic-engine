@@ -39,7 +39,7 @@ namespace automatic_engine
         }
 
         /// <summary>
-        /// 参照ボタン
+        /// フォルダーを選択するボタン
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -64,37 +64,8 @@ namespace automatic_engine
         /// <param name="e"></param>
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
-            // 単項目チェック
-            if (!CheckRequire(CHECK_TYPE.REPLACE_WITH))
-            {
-                return;
-            }
-
-            // 指定パスを取得する
-            var strPath = TxtPath.Text;
-
-            // パスが指定された場合
-            if (!string.IsNullOrEmpty(strPath))
-            {
-                // フォルダー情報を取得
-                var directoryInfo = new DirectoryInfo(strPath);
-
-                // フォルダーにすべてファイルの情報を取得する
-                var fileInfos = directoryInfo.GetFiles();
-
-                // すべてファイルを繰返す
-                foreach (FileInfo info in fileInfos)
-                {
-                    // 変更前ファイル名
-                    var strOriginName = info.Name;
-
-                    // 変更後ファイル名
-                    var strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
-
-                    // 名の変更を実行する
-                    File.Move(info.FullName, string.Concat(info.DirectoryName, System.IO.Path.DirectorySeparatorChar, strChangeName));
-                }
-            }
+            // 実行する
+            Execute(isPreview: false);
         }
 
         /// <summary>
@@ -113,16 +84,25 @@ namespace automatic_engine
                 // チェック結果がFALSEを戻す
                 return false;
             }
+            // パスチェック
+            else if (string.IsNullOrEmpty(TxtPath.Text))
+            {
+                // エラーメッセージを表示する
+                System.Windows.Forms.MessageBox.Show("Please input Path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // チェック結果がFALSEを戻す
+                return false;
+            }
             // Raplce-Withの場合
             else if (type.Contains(CHECK_TYPE.REPLACE_WITH))
             {
                 // 変更前または変更後条件が入力されていない場合、エラーになる。
-                if (string.IsNullOrEmpty(TxtReplace.Text) 
+                if (string.IsNullOrEmpty(TxtReplace.Text)
                     || string.IsNullOrEmpty(TxtWith.Text))
                 {
                     // エラーメッセージを表示する
-                    System.Windows.Forms.MessageBox.Show("Please input condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+                    System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                     // チェック結果がFALSEを戻す
                     return false;
                 }
@@ -130,6 +110,112 @@ namespace automatic_engine
 
             // チェック結果がTRUEを戻す
             return true;
+        }
+
+        /// <summary>
+        /// 変更前プレビューを見るボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnPreview_Click(object sender, RoutedEventArgs e)
+        {
+            // 実行する
+            Execute(true);
+        }
+
+        /// <summary>
+        /// 処理実行する
+        /// </summary>
+        /// <param name="isPreview">プレビューフラグ</param>
+        private void Execute(bool isPreview)
+        {
+            // 単項目チェック
+            if (!CheckRequire(CHECK_TYPE.REPLACE_WITH))
+            {
+                return;
+            }
+
+            // 確認ダイアログを表示する
+            if (System.Windows.Forms.DialogResult.No.Equals(
+                System.Windows.Forms.MessageBox.Show(
+                    "Do you want to execute rename?",
+                    "Confirm",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question)))
+            {
+                return;
+            }
+
+            // 指定パスを取得する
+            var strPath = TxtPath.Text;
+
+            // フォルダー情報を取得
+            var directoryInfo = new DirectoryInfo(strPath);
+
+            // フォルダーにすべてファイルの情報を取得する
+            var fileInfos = directoryInfo.GetFiles();
+
+            // 変更前ファイル名一覧
+            List<string> listOriginalName = new List<string>();
+
+            // 変更後ファイル名一覧
+            List<string> listChangeName = new List<string>();
+
+            // 実行ファイル数
+            var executedFileCount = 0;
+
+            // すべてファイルを繰返す
+            foreach (FileInfo info in fileInfos)
+            {
+                // 変更前ファイル名
+                var strOriginName = info.Name;
+
+                // 変更後ファイル名
+                var strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
+
+                // 変更前ファイル名一覧に変更前ファイル名を追加する
+                listOriginalName.Add(strOriginName);
+
+                // 変更後ファイル名一覧に変更後ファイル名を追加する
+                listChangeName.Add(strChangeName);
+
+                // 実行モードの場合
+                if (!isPreview)
+                {
+                    // 名の変更を実行する
+                    File.Move(info.FullName, string.Concat(info.DirectoryName, System.IO.Path.DirectorySeparatorChar, strChangeName));
+                    executedFileCount++;
+                }
+            }
+
+            // プレビューモードの場合
+            if (isPreview)
+            {
+                // プレビュー画面を作成する
+                var previewWindow = new PreviewWindow(listOriginal: listOriginalName, listChanged: listChangeName)
+                {
+                    Owner = this
+                };
+
+                // プレビュー画面を表示する
+                previewWindow.ShowDialog();
+
+                // プレビュー画面から実行ボタンを押す時
+                if (PreviewWindow.dialogResult)
+                {
+                    // 実行する
+                    Execute(false);
+                }
+            }
+            // 実行モードの場合
+            else
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    string.Format("Renamed {0} files!", executedFileCount),
+                    "Complete",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
     }
 }

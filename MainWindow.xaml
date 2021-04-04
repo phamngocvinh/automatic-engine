@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="Automatic-Engine" Height="135.725" Width="481.772" ResizeMode="NoResize">
+        Title="Automatic-Engine" Height="387.409" Width="616.838" ResizeMode="NoResize">
     <Grid>
         <Label Content="Path" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TxtPath" HorizontalAlignment="Left" Height="23" Margin="61,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
@@ -15,6 +15,7 @@
         <TextBox x:Name="TxtReplace" HorizontalAlignment="Left" Height="23" Margin="61,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Background="White"/>
         <TextBox x:Name="TxtWith" HorizontalAlignment="Left" Height="23" Margin="61,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
         <Button x:Name="BtnExecute" Content="Execute" HorizontalAlignment="Left" Margin="416,68,0,0" VerticalAlignment="Top" Click="BtnExecute_Click"/>
+        <Button x:Name="BtnPreview" Content="Preview" HorizontalAlignment="Left" Margin="336,131,0,0" VerticalAlignment="Top" Width="75" Click="BtnPreview_Click"/>
 
     </Grid>
 </Window>
