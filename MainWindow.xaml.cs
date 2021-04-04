@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace automatic_engine
 {
@@ -170,7 +159,7 @@ namespace automatic_engine
                 previewWindow.ShowDialog();
 
                 // プレビュー画面から実行ボタンを押す時
-                if (PreviewWindow.dialogResult)
+                if (PreviewWindow.isExecute)
                 {
                     // 実行する
                     Execute(isPreview: false, isExecuteAfterPreviewed: true);

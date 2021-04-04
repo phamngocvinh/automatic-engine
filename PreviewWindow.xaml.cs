@@ -1,16 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace automatic_engine
 {
@@ -20,32 +10,51 @@ namespace automatic_engine
     public partial class PreviewWindow : Window
     {
         /// <summary>
-        /// ダイアログ結果
+        /// 実行かフラグ
         /// </summary>
-        public static bool dialogResult = false;
+        public static bool isExecute = false;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="listOriginal">変更前一覧</param>
+        /// <param name="listChanged">変更後一覧</param>
         public PreviewWindow(List<string> listOriginal, List<string> listChanged)
         {
             InitializeComponent();
+
+            // 変更前を表示する
             foreach (string name in listOriginal)
             {
                 TxtBefore.Text += string.Concat(name, Environment.NewLine);
             }
+
+            // 変更後を表示する
             foreach (string name in listChanged)
             {
                 TxtAfter.Text += string.Concat(name, Environment.NewLine);
             }
         }
 
+        /// <summary>
+        /// 実行処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
-            dialogResult = true;
+            isExecute = true;
             Close();
         }
 
+        /// <summary>
+        /// キャンセル
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
-            dialogResult = false;
+            isExecute = false;
             Close();
         }
     }
