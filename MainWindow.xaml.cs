@@ -65,7 +65,7 @@ namespace automatic_engine
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
             // 実行する
-            Execute(isPreview: false);
+            Execute(isPreview: false, isExecuteAfterPreviewed: false);
         }
 
         /// <summary>
@@ -89,6 +89,15 @@ namespace automatic_engine
             {
                 // エラーメッセージを表示する
                 System.Windows.Forms.MessageBox.Show("Please input Path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // チェック結果がFALSEを戻す
+                return false;
+            }
+            // パスがパソコンに存在しない場合、エラーになる
+            else if (!Directory.Exists(TxtPath.Text))
+            {
+                // エラーメッセージを表示する
+                System.Windows.Forms.MessageBox.Show("Path not exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 // チェック結果がFALSEを戻す
                 return false;
@@ -120,14 +129,15 @@ namespace automatic_engine
         private void BtnPreview_Click(object sender, RoutedEventArgs e)
         {
             // 実行する
-            Execute(true);
+            Execute(isPreview: true, isExecuteAfterPreviewed: false);
         }
 
         /// <summary>
         /// 処理実行する
         /// </summary>
         /// <param name="isPreview">プレビューフラグ</param>
-        private void Execute(bool isPreview)
+        /// <param name="isExecuteAfterPreviewed">プレビュー後実行フラグ</param>
+        private void Execute(bool isPreview, bool isExecuteAfterPreviewed)
         {
             // 単項目チェック
             if (!CheckRequire(CHECK_TYPE.REPLACE_WITH))
@@ -136,14 +146,20 @@ namespace automatic_engine
             }
 
             // 確認ダイアログを表示する
-            if (System.Windows.Forms.DialogResult.No.Equals(
-                System.Windows.Forms.MessageBox.Show(
-                    "Do you want to execute rename?",
-                    "Confirm",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question)))
+            if (!isPreview)
             {
-                return;
+                if (!isExecuteAfterPreviewed)
+                {
+                    if (System.Windows.Forms.DialogResult.No.Equals(
+                        System.Windows.Forms.MessageBox.Show(
+                            "Do you want to execute rename?",
+                            "Confirm",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question)))
+                    {
+                        return;
+                    }
+                }
             }
 
             // 指定パスを取得する
@@ -211,17 +227,30 @@ namespace automatic_engine
                 if (PreviewWindow.dialogResult)
                 {
                     // 実行する
-                    Execute(false);
+                    Execute(isPreview: false, isExecuteAfterPreviewed: true);
                 }
             }
             // 実行モードの場合
             else
             {
-                System.Windows.Forms.MessageBox.Show(
-                    string.Format("Renamed {0} files!", executedFileCount),
-                    "Complete",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                // 実行されたファイル数は０が超えるの場合
+                if (executedFileCount > 0)
+                {
+                    System.Windows.Forms.MessageBox.Show(
+                        string.Format("Renamed {0} files!", executedFileCount),
+                        "Complete",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                // 実行されたファイルがない場合
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show(
+                        "No file was executed!",
+                        "Complete",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
             }
         }
     }
