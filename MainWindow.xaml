@@ -5,18 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Automatic-Engine" Height="135.725" Width="481.772" ResizeMode="NoResize">
     <Grid>
         <Label Content="Path" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtPath" HorizontalAlignment="Left" Height="23" Margin="61,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
-        <Button x:Name="BtnBrowse" Content="..." HorizontalAlignment="Left" Margin="313,12,0,0" VerticalAlignment="Top" Width="19" Click="BtnBrowse_Click"/>
-        <Label Content="Replace" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
-        <Label Content="With" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtReplace" HorizontalAlignment="Left" Height="23" Margin="61,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" Background="White"/>
-        <TextBox x:Name="TxtWith" HorizontalAlignment="Left" Height="23" Margin="61,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
-        <Button x:Name="BtnExecute" Content="Execute" HorizontalAlignment="Left" Margin="298,109,0,0" VerticalAlignment="Top" Click="BtnExecute_Click"/>
-        <TextBlock x:Name="before" HorizontalAlignment="Left" Margin="10,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="215" Width="390"/>
-        <TextBlock x:Name="after" HorizontalAlignment="Left" Margin="439,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="215" Width="344"/>
+        <TextBox x:Name="TxtPath" HorizontalAlignment="Left" Height="23" Margin="61,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
+        <Button x:Name="BtnBrowse" Content="..." HorizontalAlignment="Left" Margin="416,12,0,0" VerticalAlignment="Top" Width="19" Click="BtnBrowse_Click"/>
+        <Label Content="Replace" HorizontalAlignment="Left" Margin="5,37,0,0" VerticalAlignment="Top"/>
+        <Label Content="With" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtReplace" HorizontalAlignment="Left" Height="23" Margin="61,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Background="White"/>
+        <TextBox x:Name="TxtWith" HorizontalAlignment="Left" Height="23" Margin="61,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
+        <Button x:Name="BtnExecute" Content="Execute" HorizontalAlignment="Left" Margin="416,68,0,0" VerticalAlignment="Top" Click="BtnExecute_Click"/>
 
     </Grid>
 </Window>
