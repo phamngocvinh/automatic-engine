@@ -69,59 +69,6 @@ namespace automatic_engine
         }
 
         /// <summary>
-        /// 必須チェック
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private bool CheckRequire(params CHECK_TYPE[] type)
-        {
-            // チェック種類が設定されない場合、エラーになる
-            if (type.Length == 0)
-            {
-                // エラーメッセージを表示する
-                System.Windows.Forms.MessageBox.Show("Internal Error: Missing Parameter", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // チェック結果がFALSEを戻す
-                return false;
-            }
-            // パスチェック
-            else if (string.IsNullOrEmpty(TxtPath.Text))
-            {
-                // エラーメッセージを表示する
-                System.Windows.Forms.MessageBox.Show("Please input Path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // チェック結果がFALSEを戻す
-                return false;
-            }
-            // パスがパソコンに存在しない場合、エラーになる
-            else if (!Directory.Exists(TxtPath.Text))
-            {
-                // エラーメッセージを表示する
-                System.Windows.Forms.MessageBox.Show("Path not exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // チェック結果がFALSEを戻す
-                return false;
-            }
-            // Raplce-Withの場合
-            else if (type.Contains(CHECK_TYPE.REPLACE_WITH))
-            {
-                // 変更前または変更後条件が入力されていない場合、エラーになる。
-                if (string.IsNullOrEmpty(TxtReplace.Text)
-                    || string.IsNullOrEmpty(TxtWith.Text))
-                {
-                    // エラーメッセージを表示する
-                    System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    // チェック結果がFALSEを戻す
-                    return false;
-                }
-            }
-
-            // チェック結果がTRUEを戻す
-            return true;
-        }
-
-        /// <summary>
         /// 変更前プレビューを見るボタン
         /// </summary>
         /// <param name="sender"></param>
@@ -253,6 +200,59 @@ namespace automatic_engine
                         MessageBoxIcon.Information);
                 }
             }
+        }
+
+        /// <summary>
+        /// 必須チェック
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private bool CheckRequire(params CHECK_TYPE[] type)
+        {
+            // チェック種類が設定されない場合、エラーになる
+            if (type.Length == 0)
+            {
+                // エラーメッセージを表示する
+                System.Windows.Forms.MessageBox.Show("Internal Error: Missing Parameter", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // チェック結果がFALSEを戻す
+                return false;
+            }
+            // パスチェック
+            else if (string.IsNullOrEmpty(TxtPath.Text))
+            {
+                // エラーメッセージを表示する
+                System.Windows.Forms.MessageBox.Show("Please input Path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // チェック結果がFALSEを戻す
+                return false;
+            }
+            // パスがパソコンに存在しない場合、エラーになる
+            else if (!Directory.Exists(TxtPath.Text))
+            {
+                // エラーメッセージを表示する
+                System.Windows.Forms.MessageBox.Show("Path not exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // チェック結果がFALSEを戻す
+                return false;
+            }
+            // Raplce-Withの場合
+            else if (type.Contains(CHECK_TYPE.REPLACE_WITH))
+            {
+                // 変更前または変更後条件が入力されていない場合、エラーになる。
+                if (string.IsNullOrEmpty(TxtReplace.Text)
+                    || string.IsNullOrEmpty(TxtWith.Text))
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // チェック結果がFALSEを戻す
+                    return false;
+                }
+            }
+
+            // チェック結果がTRUEを戻す
+            return true;
         }
     }
 }
