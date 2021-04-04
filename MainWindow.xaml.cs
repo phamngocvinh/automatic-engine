@@ -170,6 +170,13 @@ namespace automatic_engine
                 // 変更前ファイル名
                 var strOriginName = info.Name;
 
+                // ファイル名にReplace文字が含まない場合、処理対象以外になる
+                if (!strOriginName.Contains(TxtReplace.Text))
+                {
+                    // 次のレコードを移動する
+                    continue;
+                }
+
                 // 変更後ファイル名
                 var strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
 
