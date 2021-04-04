@@ -12,9 +12,11 @@
         <Button x:Name="BtnBrowse" Content="..." HorizontalAlignment="Left" Margin="313,12,0,0" VerticalAlignment="Top" Width="19" Click="BtnBrowse_Click"/>
         <Label Content="Replace" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
         <Label Content="With" HorizontalAlignment="Left" Margin="10,106,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtReplace" HorizontalAlignment="Left" Height="23" Margin="61,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
+        <TextBox x:Name="TxtReplace" HorizontalAlignment="Left" Height="23" Margin="61,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223" Background="White"/>
         <TextBox x:Name="TxtWith" HorizontalAlignment="Left" Height="23" Margin="61,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="223"/>
         <Button x:Name="BtnExecute" Content="Execute" HorizontalAlignment="Left" Margin="298,109,0,0" VerticalAlignment="Top" Click="BtnExecute_Click"/>
+        <TextBlock x:Name="before" HorizontalAlignment="Left" Margin="10,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="215" Width="390"/>
+        <TextBlock x:Name="after" HorizontalAlignment="Left" Margin="439,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="215" Width="344"/>
 
     </Grid>
 </Window>
