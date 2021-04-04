@@ -145,21 +145,20 @@ namespace automatic_engine
                 return;
             }
 
-            // 確認ダイアログを表示する
-            if (!isPreview)
+            // プレビューモードじゃない場合
+            if (!isPreview && !isExecuteAfterPreviewed)
             {
-                if (!isExecuteAfterPreviewed)
+                // 確認ダイアログを表示する
+                if (System.Windows.Forms.DialogResult.No.Equals(
+                    System.Windows.Forms.MessageBox.Show(
+                        "Do you want to execute rename?",
+                        "Confirm",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question)))
                 {
-                    if (System.Windows.Forms.DialogResult.No.Equals(
-                        System.Windows.Forms.MessageBox.Show(
-                            "Do you want to execute rename?",
-                            "Confirm",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question)))
-                    {
-                        return;
-                    }
+                    return;
                 }
+
             }
 
             // 指定パスを取得する
@@ -236,6 +235,7 @@ namespace automatic_engine
                 // 実行されたファイル数は０が超えるの場合
                 if (executedFileCount > 0)
                 {
+                    // 結果メッセージを表示する
                     System.Windows.Forms.MessageBox.Show(
                         string.Format("Renamed {0} files!", executedFileCount),
                         "Complete",
@@ -245,6 +245,7 @@ namespace automatic_engine
                 // 実行されたファイルがない場合
                 else
                 {
+                    // 結果メッセージを表示する
                     System.Windows.Forms.MessageBox.Show(
                         "No file was executed!",
                         "Complete",
