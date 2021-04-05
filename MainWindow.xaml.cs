@@ -16,12 +16,29 @@ namespace automatic_engine
         /// <summary>
         /// チェック種類
         /// </summary>
-        public enum CHECK_TYPE
+        private enum CHECK_TYPE
         {
             REPLACE_WITH,
             INSERT_INTO,
             NUMBERING,
         }
+
+        /// <summary>
+        /// 名前で順番
+        /// </summary>
+        private const string SORTBY_NAME = "Name";
+        /// <summary>
+        /// 編集日で順番
+        /// </summary>
+        private const string SORTBY_MODIFIED = "Modified Date";
+        /// <summary>
+        /// 作成日で順番
+        /// </summary>
+        private const string SORTBY_CREATED = "Created Date";
+        /// <summary>
+        /// サイズで順番
+        /// </summary>
+        private const string SORTBY_SIZE = "Size";
 
         /// <summary>
         /// コンストラクタ
@@ -352,22 +369,22 @@ namespace automatic_engine
                 string selectedValue = ((ComboBoxItem)CbbSortBy.SelectedValue).Content.ToString();
                 
                 // 名前で順番する
-                if ("Name".Equals(selectedValue))
+                if (SORTBY_NAME.Equals(selectedValue))
                 {
                     fileInfos = fileInfos.OrderBy(v => v.Name).ToArray();
                 }
                 // 編集日で順番する
-                else if ("Modified Date".Equals(selectedValue))
+                else if (SORTBY_MODIFIED.Equals(selectedValue))
                 {
                     fileInfos = fileInfos.OrderBy(v => v.LastWriteTime).ToArray();
                 }
                 // 作成日で順番する
-                else if ("Created Date".Equals(selectedValue))
+                else if (SORTBY_CREATED.Equals(selectedValue))
                 {
                     fileInfos = fileInfos.OrderBy(v => v.CreationTime).ToArray();
                 }
                 // サイズで順番する
-                else if ("Size".Equals(selectedValue))
+                else if (SORTBY_SIZE.Equals(selectedValue))
                 {
                     fileInfos = fileInfos.OrderBy(v => v.Length).ToArray();
                 }
