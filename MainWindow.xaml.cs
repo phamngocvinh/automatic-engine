@@ -594,9 +594,6 @@ namespace automatic_engine
                     else if ((bool)RdoRegex.IsChecked)
                     {
                         strChangeName = Regex.Replace(strOriginName, TxtRegex_Find.Text, TxtRegex_Replace.Text);
-                        //MatchCollection matches = Regex.Matches(strOriginName, TxtRegex_Find.Text);
-                        //var arrMatches = matches[0].Groups.Cast<Group>().ToArray();
-                        //string abc = string.Format(Regex.Replace(TxtRegex_Replace.Text, "\\$(\\d)", "{$1}"), arrMatches);
                     }
 
                     // 変更前ファイル名一覧に変更前ファイル名を追加する
