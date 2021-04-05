@@ -43,6 +43,7 @@ namespace automatic_engine
         /// <param name="e"></param>
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
+            // 実行フラグをTRUEになる
             isExecute = true;
             Close();
         }
@@ -56,6 +57,18 @@ namespace automatic_engine
         {
             isExecute = false;
             Close();
+        }
+
+        /// <summary>
+        /// スクロールバーを変更する時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtBeforeAfter_ScrollChanged(object sender, System.Windows.Controls.ScrollChangedEventArgs e)
+        {
+            // 変更前と変更後の表示を移動します
+            TxtBefore.ScrollToVerticalOffset(e.VerticalOffset);
+            TxtAfter.ScrollToVerticalOffset(e.VerticalOffset);
         }
     }
 }
