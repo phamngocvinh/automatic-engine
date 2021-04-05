@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace automatic_engine
@@ -264,6 +265,39 @@ namespace automatic_engine
         private void BtnExit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// クリア
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnClear_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (System.Windows.Controls.TextBox textBox in CommonUtils.AllTextBoxes(this))
+            {
+                textBox.Text = string.Empty;
+            }
+        }
+
+        /// <summary>
+        /// Replace-Withモードを選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LblReplace_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            RdoReplace.IsChecked = true;
+        }
+
+        /// <summary>
+        /// Insert-Intoモードを選択
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LblInsertInto_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            RdoInsert.IsChecked = true;
         }
     }
 }
