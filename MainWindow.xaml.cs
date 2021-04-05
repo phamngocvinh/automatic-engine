@@ -226,12 +226,20 @@ namespace automatic_engine
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnClear_Click(object sender, RoutedEventArgs e)
+        private void ResetInput(object sender, RoutedEventArgs e)
         {
             TxtReplace.Text = string.Empty;
             TxtWith.Text = string.Empty;
+
             TxtInsertInto_Word.Text = string.Empty;
             TxtInsertInto_Index.Text = string.Empty;
+
+            TxtNumbering_At.Text = string.Empty;
+            TxtNumbering_From.Text = string.Empty;
+            RdoNumbering_Increase.IsChecked = true;
+            ChkNumbering_Format.IsChecked = false;
+            ChkNumbering_SortBy.IsChecked = false;
+            ChkNumbering_Reverse.IsChecked = false;
         }
 
         /// <summary>
