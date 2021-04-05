@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="Automatic-Engine" Height="372.642" Width="623.557" MinWidth="623.557" MinHeight="360.642" IsTabStop="False">
+        Title="Automatic-Engine" Height="438.242" Width="623.557" MinWidth="623.557" MinHeight="360.642" IsTabStop="False">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35.2"/>
@@ -61,6 +61,10 @@
             <ComboBoxItem Content="ddMMyyyy"/>
             <ComboBoxItem Content="dd-MM-yyyy"/>
         </ComboBox>
+        <RadioButton x:Name="RdoRegex" Content="" HorizontalAlignment="Left" Margin="10,292,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
+        <Label x:Name="LblRegex" Content="Regex" HorizontalAlignment="Left" Margin="6.8,286,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
+        <TextBox x:Name="TxtRegex_Find" Height="22" Margin="9.6,288,7,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2"/>
+        <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="9.6,315,7,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="3"/>
 
     </Grid>
 </Window>
