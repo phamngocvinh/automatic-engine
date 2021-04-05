@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="PreviewWindow" Height="320.652" Width="670" MinHeight="250" MinWidth="670">
+        Title="Preview" Height="320.652" Width="670" MinHeight="250" MinWidth="670">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400*"/>

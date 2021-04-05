@@ -19,6 +19,7 @@ namespace automatic_engine
         public enum CHECK_TYPE
         {
             REPLACE_WITH,
+            INSERT_INTO,
         }
 
         /// <summary>
@@ -79,7 +80,13 @@ namespace automatic_engine
         private void Execute(bool isPreview, bool isExecuteAfterPreviewed)
         {
             // 単項目チェック
-            if (!CheckRequire(CHECK_TYPE.REPLACE_WITH))
+            if ((bool)RdoReplace.IsChecked
+                && !CheckRequire(CHECK_TYPE.REPLACE_WITH))
+            {
+                return;
+            }
+            else if ((bool)RdoInsert.IsChecked
+                && !CheckRequire(CHECK_TYPE.INSERT_INTO))
             {
                 return;
             }
@@ -132,7 +139,16 @@ namespace automatic_engine
                 }
 
                 // 変更後ファイル名
-                var strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
+                var strChangeName = strOriginName;
+
+                if ((bool)RdoReplace.IsChecked)
+                {
+                    strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
+                }
+                else if ((bool)RdoInsert.IsChecked)
+                {
+                    strChangeName = strOriginName.Insert(int.Parse(TxtInsertInto_Index.Text), TxtInsertInto_Word.Text);
+                }
 
                 // 変更前ファイル名一覧に変更前ファイル名を追加する
                 listOriginalName.Add(strOriginName);
@@ -201,19 +217,10 @@ namespace automatic_engine
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private bool CheckRequire(params CHECK_TYPE[] type)
+        private bool CheckRequire(CHECK_TYPE type)
         {
-            // チェック種類が設定されない場合、エラーになる
-            if (type.Length == 0)
-            {
-                // エラーメッセージを表示する
-                System.Windows.Forms.MessageBox.Show("Internal Error: Missing Parameter", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // チェック結果がFALSEを戻す
-                return false;
-            }
             // パスチェック
-            else if (string.IsNullOrEmpty(TxtPath.Text))
+            if (string.IsNullOrEmpty(TxtPath.Text))
             {
                 // エラーメッセージを表示する
                 System.Windows.Forms.MessageBox.Show("Please input Path", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -237,9 +244,9 @@ namespace automatic_engine
                 return false;
             }
             // Raplce-Withの場合
-            else if (type.Contains(CHECK_TYPE.REPLACE_WITH))
+            else if (type.Equals(CHECK_TYPE.REPLACE_WITH))
             {
-                // 変更前条件が入力されていない場合、エラーになる。
+                // 変更前条件が入力されていない場合、エラーになる
                 if (string.IsNullOrEmpty(TxtReplace.Text))
                 {
                     // エラーメッセージを表示する
@@ -247,6 +254,44 @@ namespace automatic_engine
 
                     // エラーコントロールをフォーカスする
                     TxtReplace.Focus();
+
+                    // チェック結果がFALSEを戻す
+                    return false;
+                }
+            }
+            // Insert-Intoの場合
+            else if (type.Equals(CHECK_TYPE.INSERT_INTO))
+            {
+                // 印刷条件を入力しない場合、エラーになる
+                if (string.IsNullOrEmpty(TxtInsertInto_Word.Text))
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtInsertInto_Word.Focus();
+
+                    // チェック結果がFALSEを戻す
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(TxtInsertInto_Index.Text))
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtInsertInto_Index.Focus();
+
+                    // チェック結果がFALSEを戻す
+                    return false;
+                }
+                else if (!int.TryParse(TxtInsertInto_Index.Text, out _))
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show("Invalid Index", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtInsertInto_Index.Focus();
 
                     // チェック結果がFALSEを戻す
                     return false;
@@ -274,10 +319,10 @@ namespace automatic_engine
         /// <param name="e"></param>
         private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
-            foreach (System.Windows.Controls.TextBox textBox in CommonUtils.AllTextBoxes(this))
-            {
-                textBox.Text = string.Empty;
-            }
+            TxtReplace.Text = string.Empty;
+            TxtWith.Text = string.Empty;
+            TxtInsertInto_Word.Text = string.Empty;
+            TxtInsertInto_Index.Text = string.Empty;
         }
 
         /// <summary>
