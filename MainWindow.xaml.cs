@@ -21,6 +21,7 @@ namespace automatic_engine
             REPLACE_WITH,
             INSERT_INTO,
             NUMBERING,
+            DATE,
         }
 
         /// <summary>
@@ -178,13 +179,13 @@ namespace automatic_engine
             // Numberingの場合
             else if (type.Equals(CHECK_TYPE.NUMBERING))
             {
-                if (string.IsNullOrEmpty(TxtNumbering_At.Text))
+                if (string.IsNullOrEmpty(TxtNumbering_Index.Text))
                 {
                     // エラーメッセージを表示する
                     System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     // エラーコントロールをフォーカスする
-                    TxtNumbering_At.Focus();
+                    TxtNumbering_Index.Focus();
 
                     // チェック結果がFALSEを戻す
                     return false;
@@ -200,13 +201,13 @@ namespace automatic_engine
                     // チェック結果がFALSEを戻す
                     return false;
                 }
-                else if (!int.TryParse(TxtNumbering_At.Text, out _))
+                else if (!int.TryParse(TxtNumbering_Index.Text, out _))
                 {
                     // エラーメッセージを表示する
                     System.Windows.Forms.MessageBox.Show("Invalid Index", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     // エラーコントロールをフォーカスする
-                    TxtNumbering_At.Focus();
+                    TxtNumbering_Index.Focus();
 
                     // チェック結果がFALSEを戻す
                     return false;
@@ -218,6 +219,44 @@ namespace automatic_engine
 
                     // エラーコントロールをフォーカスする
                     TxtNumbering_From.Focus();
+
+                    // チェック結果がFALSEを戻す
+                    return false;
+                }
+            }
+            // Numberingの場合
+            else if (type.Equals(CHECK_TYPE.DATE))
+            {
+                if (!string.IsNullOrEmpty(DpDate.Text)
+                    && !DateTime.TryParse(DpDate.Text, out _))
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show("Invalid date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    DpDate.Focus();
+
+                    // チェック結果がFALSEを戻す
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(TxtDate_Index.Text))
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtDate_Index.Focus();
+
+                    // チェック結果がFALSEを戻す
+                    return false;
+                }
+                else if (!int.TryParse(TxtDate_Index.Text, out _))
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show("Invalid Index", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtDate_Index.Focus();
 
                     // チェック結果がFALSEを戻す
                     return false;
@@ -251,12 +290,15 @@ namespace automatic_engine
             TxtInsertInto_Word.Text = string.Empty;
             TxtInsertInto_Index.Text = string.Empty;
 
-            TxtNumbering_At.Text = string.Empty;
+            TxtNumbering_Index.Text = string.Empty;
             TxtNumbering_From.Text = string.Empty;
             RdoNumbering_Increase.IsChecked = true;
             ChkNumbering_Format.IsChecked = false;
             ChkNumbering_SortBy.IsChecked = false;
             ChkNumbering_Reverse.IsChecked = false;
+
+            DpDate.Text = string.Empty;
+            TxtDate_Index.Text = string.Empty;
         }
 
         /// <summary>
@@ -286,6 +328,12 @@ namespace automatic_engine
                 // Numberingラジオを選択する
                 RdoNumbering.IsChecked = true;
             }
+            // Dateの場合
+            else if (sender.Equals(LblDate))
+            {
+                // Numberingラジオを選択する
+                RdoDate.IsChecked = true;
+            }
         }
 
         /// <summary>
@@ -301,7 +349,9 @@ namespace automatic_engine
                 || ((bool)RdoInsert.IsChecked
                     && !CheckRequire(CHECK_TYPE.INSERT_INTO))
                 || ((bool)RdoNumbering.IsChecked
-                   && !CheckRequire(CHECK_TYPE.NUMBERING)))
+                   && !CheckRequire(CHECK_TYPE.NUMBERING))
+                || ((bool)RdoDate.IsChecked
+                   && !CheckRequire(CHECK_TYPE.DATE)))
             {
                 return;
             }
@@ -345,29 +395,72 @@ namespace automatic_engine
             int numbering_from = 0;
             if ((bool)RdoNumbering.IsChecked)
             {
-                numbering_at = int.Parse(TxtNumbering_At.Text);
+                numbering_at = int.Parse(TxtNumbering_Index.Text);
                 numbering_from = int.Parse(TxtNumbering_From.Text);
             }
 
             // 整合性チェック
-            if ((bool)RdoNumbering_Decrease.IsChecked
-                && numbering_from < fileInfos.Length)
+            int shortestNameLength = int.MaxValue;
+            foreach (FileInfo info in fileInfos)
             {
-                // エラーメッセージを表示する
-                System.Windows.Forms.MessageBox.Show("Invalid decrease number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (shortestNameLength > info.Name.Length)
+                {
+                    shortestNameLength = info.Name.Length;
+                }                
+            }
 
-                // エラーコントロールをフォーカスする
-                TxtNumbering_From.Focus();
+            if ((bool)RdoNumbering.IsChecked)
+            {
+                if ((bool)RdoNumbering_Decrease.IsChecked
+                    && numbering_from < fileInfos.Length)
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show(
+                        string.Format("Invalid decrease number\r\nDecrease number smaller than total num of files: {0}", fileInfos.Length),
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                // 処理停止
-                return;
+                    // エラーコントロールをフォーカスする
+                    TxtNumbering_From.Focus();
+
+                    // 処理停止
+                    return;
+                }
+                else if (int.Parse(TxtNumbering_Index.Text) > shortestNameLength)
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show(
+                        string.Format("Invalid index\r\nIndex larger than shortest Filename: {0}", shortestNameLength),
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtNumbering_Index.Focus();
+
+                    // 処理停止
+                    return;
+                }
+            }
+            else if ((bool)RdoDate.IsChecked)
+            {
+                if (int.Parse(TxtDate_Index.Text) > shortestNameLength)
+                {
+                    // エラーメッセージを表示する
+                    System.Windows.Forms.MessageBox.Show(
+                        string.Format("Invalid index (Index larger than shortest Filename: {0})", shortestNameLength),
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // エラーコントロールをフォーカスする
+                    TxtDate_Index.Focus();
+
+                    // 処理停止
+                    return;
+                }
             }
 
             // 順番処理
             if ((bool)ChkNumbering_SortBy.IsChecked)
             {
                 string selectedValue = ((ComboBoxItem)CbbSortBy.SelectedValue).Content.ToString();
-                
+
                 // 名前で順番する
                 if (SORTBY_NAME.Equals(selectedValue))
                 {
@@ -446,6 +539,24 @@ namespace automatic_engine
                     else
                     {
                         numbering_from--;
+                    }
+                }
+                // Date処理
+                else if ((bool)RdoDate.IsChecked)
+                {
+                    string dateFormat = ((ComboBoxItem)CbbDateFormat.SelectedValue).Content.ToString();
+
+                    // 日付を選択しない場合
+                    if (string.IsNullOrEmpty(DpDate.Text))
+                    {
+                        // システム日付で印刷する
+                        strChangeName = strOriginName.Insert(int.Parse(TxtDate_Index.Text), DateTime.Now.ToString(dateFormat));
+                    }
+                    // 日付を選択する場合
+                    else
+                    {
+                        // 指定された日付で印刷する
+                        strChangeName = strOriginName.Insert(int.Parse(TxtDate_Index.Text), DateTime.Parse(DpDate.Text).ToString(dateFormat));
                     }
                 }
 

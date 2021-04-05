@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="Automatic-Engine" Height="317.442" Width="613.157" MinWidth="613.157" MinHeight="317.442" IsTabStop="False">
+        Title="Automatic-Engine" Height="372.642" Width="623.557" MinWidth="623.557" MinHeight="360.642" IsTabStop="False">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35.2"/>
@@ -25,14 +25,14 @@
         <Button x:Name="BtnExit" Content="Exit" Margin="0.4,0,0,9.8" Click="BtnExit_Click" Grid.Column="3" HorizontalAlignment="Left" Width="70" TabIndex="6" Height="23" VerticalAlignment="Bottom"/>
         <Label x:Name="LblInsertInto_Word" Content="Insert" HorizontalAlignment="Left" Margin="5.8,103,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="40"/>
         <TextBox x:Name="TxtInsertInto_Word" Height="24" Margin="12.6,104,4.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
-        <Label x:Name="LblInsertInto_Index" Content="Into" HorizontalAlignment="Left" Margin="5.8,132,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="30"/>
+        <Label x:Name="LblInsertInto_Index" Content="Into" HorizontalAlignment="Left" Margin="5.8,132,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="12.6,133,4.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
         <Button x:Name="BtnClear" Content="Reset" Margin="0,0,154.6,9.8" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="ResetInput" Height="23" VerticalAlignment="Bottom"/>
         <RadioButton x:Name="RdoReplace" Content="" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="14" Width="19" IsChecked="True" GroupName="Option"/>
         <RadioButton x:Name="RdoInsert" Content="" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
         <Separator Margin="0,0,0.4,42.8" Grid.ColumnSpan="4" Height="1" VerticalAlignment="Bottom"/>
         <Label x:Name="LblNumbering" Content="Numbering" HorizontalAlignment="Left" Margin="5.8,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="70"/>
-        <TextBox x:Name="TxtNumbering_At" Height="24" Margin="39.6,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
+        <TextBox x:Name="TxtNumbering_Index" Height="24" Margin="39.6,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
         <RadioButton x:Name="RdoNumbering" Content="" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
         <Label x:Name="LblNumbering_At" Content="At" HorizontalAlignment="Left" Margin="12.6,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtNumbering_From" Height="24" Margin="121.6,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
@@ -48,6 +48,19 @@
             <ComboBoxItem Content="Size"/>
         </ComboBox>
         <CheckBox x:Name="ChkNumbering_Reverse" Content="Reverse" Grid.Column="2" HorizontalAlignment="Left" Margin="302.6,202,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click" IsEnabled="False"/>
+        <DatePicker x:Name="DpDate" Grid.Column="2" HorizontalAlignment="Left" Margin="57.6,242,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="101"/>
+        <Label x:Name="LblDate" Content="Date" HorizontalAlignment="Left" Margin="5.8,239,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="70"/>
+        <RadioButton x:Name="RdoDate" Content="" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
+        <Label x:Name="LblDate_Insert" Content="Insert" HorizontalAlignment="Left" Margin="12.6,241,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
+        <TextBox x:Name="TxtDate_Index" Height="24" Margin="191.6,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
+        <Label x:Name="LblDate_At" Content="at" HorizontalAlignment="Left" Margin="164.6,241,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
+        <Label x:Name="LblDate_Format" Content="Format" HorizontalAlignment="Left" Margin="231.6,239,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
+        <ComboBox x:Name="CbbDateFormat" Grid.Column="2" HorizontalAlignment="Left" Margin="284.6,243,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+            <ComboBoxItem Content="yyyyMMdd" HorizontalAlignment="Left" Width="118.4"/>
+            <ComboBoxItem Content="yyyy-MM-dd"/>
+            <ComboBoxItem Content="ddMMyyyy"/>
+            <ComboBoxItem Content="dd-MM-yyyy"/>
+        </ComboBox>
 
     </Grid>
 </Window>
