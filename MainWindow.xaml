@@ -5,18 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="Automatic-Engine" Height="162.738" Width="510.762" ResizeMode="NoResize">
+        Title="Automatic-Engine" Height="170" Width="492.587" MinWidth="289" MinHeight="170" MaxHeight="170" IsTabStop="False">
     <Grid>
-        <Label Content="Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtPath" HorizontalAlignment="Left" Height="23" Margin="87,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
-        <Button x:Name="BtnBrowse" Content="Browse" HorizontalAlignment="Left" Margin="442,11,0,0" VerticalAlignment="Top" Click="BtnBrowse_Click" Height="23" Width="50"/>
-        <Label Content="Replace" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top"/>
-        <Label Content="With" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtReplace" HorizontalAlignment="Left" Height="23" Margin="87,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" Background="White"/>
-        <TextBox x:Name="TxtWith" HorizontalAlignment="Left" Height="23" Margin="87,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350"/>
-        <Button x:Name="BtnExecute" Content="Execute" HorizontalAlignment="Left" Margin="387,95,0,0" VerticalAlignment="Top" Click="BtnExecute_Click" Width="50" Height="23"/>
-        <Button x:Name="BtnPreview" Content="Preview" HorizontalAlignment="Left" Margin="332,95,0,0" VerticalAlignment="Top" Width="50" Click="BtnPreview_Click" Height="23"/>
-        <Button x:Name="BtnExit" Content="Exit" HorizontalAlignment="Left" Margin="442,95,0,0" VerticalAlignment="Top" Width="50" Height="23" Click="BtnExit_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="68.8"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="68.8"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="34"/>
+        <TextBox x:Name="TxtPath" Height="23" Margin="8.2,10,15.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" TabIndex="0"/>
+        <Button x:Name="BtnBrowse" Content="Browse" HorizontalAlignment="Left" Margin="1.6,13,0,0" VerticalAlignment="Top" Click="BtnBrowse_Click" Height="23" Width="50" Grid.Column="2" TabIndex="1"/>
+        <Label Content="Replace" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
+        <Label Content="With" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
+        <TextBox x:Name="TxtReplace" Height="23" Margin="8.2,38,15.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Grid.Column="1" TabIndex="2"/>
+        <TextBox x:Name="TxtWith" Height="23" Margin="8.2,66,15.4,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" TabIndex="3"/>
+        <Button x:Name="BtnExecute" Content="Execute" Margin="0,100,15.4,0" VerticalAlignment="Top" Click="BtnExecute_Click" Height="23" Grid.Column="1" HorizontalAlignment="Right" Width="50" TabIndex="5"/>
+        <Button x:Name="BtnPreview" Content="Preview" Margin="0,100,86.4,0" VerticalAlignment="Top" Click="BtnPreview_Click" Height="23" Grid.Column="1" HorizontalAlignment="Right" Width="50" TabIndex="4"/>
+        <Button x:Name="BtnExit" Content="Exit" Margin="1.6,100,0,0" VerticalAlignment="Top" Height="23" Click="BtnExit_Click" Grid.Column="2" HorizontalAlignment="Left" Width="50" TabIndex="6"/>
 
     </Grid>
 </Window>

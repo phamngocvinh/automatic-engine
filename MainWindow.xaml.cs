@@ -26,6 +26,7 @@ namespace automatic_engine
         public MainWindow()
         {
             InitializeComponent();
+            TxtPath.Focus();
         }
 
         /// <summary>
@@ -108,10 +109,10 @@ namespace automatic_engine
             var fileInfos = directoryInfo.GetFiles();
 
             // 変更前ファイル名一覧
-            List<string> listOriginalName = new List<string>();
+            var listOriginalName = new List<string>();
 
             // 変更後ファイル名一覧
-            List<string> listChangeName = new List<string>();
+            var listChangeName = new List<string>();
 
             // 実行ファイル数
             var executedFileCount = 0;
@@ -143,6 +144,8 @@ namespace automatic_engine
                 {
                     // 名の変更を実行する
                     File.Move(info.FullName, string.Concat(info.DirectoryName, System.IO.Path.DirectorySeparatorChar, strChangeName));
+
+                    // 処理対象数をカウントアップする
                     executedFileCount++;
                 }
             }
