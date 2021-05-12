@@ -14,19 +14,19 @@
             <ColumnDefinition Width="76.8"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="LblPath" Content="Folder Path" HorizontalAlignment="Left" Margin="6.8,10,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
-        <TextBox x:Name="TxtPath" Height="23" Margin="12.6,10,4.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
+        <TextBox x:Name="TxtPath" Height="23" Margin="12.6,10,4.6,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
         <Button x:Name="BtnBrowse" Content="Browse" Margin="0.4,10,6.4,0" VerticalAlignment="Top" Click="BtnBrowse_Click" Height="23" Grid.Column="3" TabIndex="1"/>
         <Label x:Name="LblReplace" Content="Replace" HorizontalAlignment="Left" Margin="6.8,43,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <Label x:Name="LblWith" Content="With" HorizontalAlignment="Left" Margin="6.8,71,0,0" VerticalAlignment="Top" Height="26" Width="35" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtReplace" Height="23" Margin="12.6,43,4.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2"/>
-        <TextBox x:Name="TxtWith" Height="23" Margin="12.6,71,4.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="3"/>
+        <TextBox x:Name="TxtReplace" Height="23" Margin="12.6,43,4.6,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2"/>
+        <TextBox x:Name="TxtWith" Height="23" Margin="12.6,71,4.6,0"  VerticalAlignment="Top" Grid.Column="2" TabIndex="3"/>
         <Button x:Name="BtnExecute" Content="Execute" Margin="0,0,4.6,9.8" Click="BtnExecute_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="5" Height="23" VerticalAlignment="Bottom"/>
         <Button x:Name="BtnPreview" Content="Preview" Margin="0,0,79.6,9.8" Click="BtnPreview_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Height="23" VerticalAlignment="Bottom"/>
         <Button x:Name="BtnExit" Content="Exit" Margin="0.4,0,0,9.8" Click="BtnExit_Click" Grid.Column="3" HorizontalAlignment="Left" Width="70" TabIndex="6" Height="23" VerticalAlignment="Bottom"/>
         <Label x:Name="LblInsertInto_Word" Content="Insert" HorizontalAlignment="Left" Margin="5.8,103,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="40"/>
-        <TextBox x:Name="TxtInsertInto_Word" Height="24" Margin="12.6,104,4.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
+        <TextBox x:Name="TxtInsertInto_Word" Height="24" Margin="12.6,104,4.6,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
         <Label x:Name="LblInsertInto_Index" Content="Into" HorizontalAlignment="Left" Margin="5.8,132,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="12.6,133,4.6,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
+        <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="12.6,133,4.6,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
         <Button x:Name="BtnClear" Content="Reset" Margin="0,0,154.6,9.8" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="ResetInput" Height="23" VerticalAlignment="Bottom"/>
         <RadioButton x:Name="RdoReplace" Content="" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="14" Width="19" IsChecked="True" GroupName="Option"/>
         <RadioButton x:Name="RdoInsert" Content="" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
@@ -35,7 +35,7 @@
         <TextBox x:Name="TxtNumbering_Index" Height="24" Margin="39.6,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
         <RadioButton x:Name="RdoNumbering" Content="" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
         <Label x:Name="LblNumbering_At" Content="At" HorizontalAlignment="Left" Margin="12.6,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtNumbering_From" Height="24" Margin="121.6,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
+        <TextBox x:Name="TxtNumbering_From" Height="24" Margin="121.6,167,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
         <Label x:Name="LblNumbering_From" Content="From" HorizontalAlignment="Left" Margin="79.6,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <RadioButton x:Name="RdoNumbering_Increase" Content="Increase" HorizontalAlignment="Left" Margin="163.6,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" IsChecked="True" GroupName="Numbering"/>
         <RadioButton x:Name="RdoNumbering_Decrease" Content="Decrease" HorizontalAlignment="Left" Margin="230.6,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" GroupName="Numbering"/>
@@ -52,7 +52,7 @@
         <Label x:Name="LblDate" Content="Date" HorizontalAlignment="Left" Margin="5.8,239,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="70"/>
         <RadioButton x:Name="RdoDate" Content="" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
         <Label x:Name="LblDate_Insert" Content="Insert" HorizontalAlignment="Left" Margin="12.6,241,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtDate_Index" Height="24" Margin="191.6,242,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
+        <TextBox x:Name="TxtDate_Index" Height="24" Margin="191.6,242,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
         <Label x:Name="LblDate_At" Content="at" HorizontalAlignment="Left" Margin="164.6,241,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <Label x:Name="LblDate_Format" Content="Format" HorizontalAlignment="Left" Margin="231.6,239,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <ComboBox x:Name="CbbDateFormat" Grid.Column="2" HorizontalAlignment="Left" Margin="284.6,243,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0">
@@ -63,8 +63,8 @@
         </ComboBox>
         <RadioButton x:Name="RdoRegex" Content="" HorizontalAlignment="Left" Margin="10,292,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
         <Label x:Name="LblRegex" Content="Regex" HorizontalAlignment="Left" Margin="6.8,286,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtRegex_Find" Height="22" Margin="9.6,288,7,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2"/>
-        <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="9.6,315,7,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="3"/>
+        <TextBox x:Name="TxtRegex_Find" Height="22" Margin="9.6,288,7,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2"/>
+        <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="9.6,315,7,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="3"/>
 
     </Grid>
 </Window>
