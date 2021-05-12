@@ -526,19 +526,19 @@ namespace automatic_engine
                     // 変更前ファイル名
                     var strOriginName = info.Name;
 
-                    // ファイル名にReplace文字が含まない場合、処理対象以外になる
-                    if (!strOriginName.Contains(TxtReplace.Text))
-                    {
-                        // 次のレコードを移動する
-                        continue;
-                    }
-
                     // 変更後ファイル名
                     var strChangeName = strOriginName;
 
                     // Replace-With処理
                     if ((bool)RdoReplace.IsChecked)
                     {
+                        // ファイル名にReplace文字が含まない場合、処理対象以外になる
+                        if (!strOriginName.Contains(TxtReplace.Text))
+                        {
+                            // 次のレコードを移動する
+                            continue;
+                        }
+
                         strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
                     }
                     // Insert-Into処理
