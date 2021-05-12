@@ -184,7 +184,7 @@ namespace automatic_engine
             // Numberingの場合
             else if (type.Equals(CHECK_TYPE.NUMBERING))
             {
-                if (string.IsNullOrEmpty(TxtNumbering_Index.Text))
+                if (string.IsNullOrEmpty(TxtNumbering_Index.Text) && !(bool)ChkNumbering_Last.IsChecked)
                 {
                     // エラーメッセージを表示する
                     System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -206,7 +206,7 @@ namespace automatic_engine
                     // チェック結果がFALSEを戻す
                     return false;
                 }
-                else if (!int.TryParse(TxtNumbering_Index.Text, out _))
+                else if (!int.TryParse(TxtNumbering_Index.Text, out _) && !(bool)ChkNumbering_Last.IsChecked)
                 {
                     // エラーメッセージを表示する
                     System.Windows.Forms.MessageBox.Show("Invalid Index", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -229,7 +229,7 @@ namespace automatic_engine
                     return false;
                 }
             }
-            // Numberingの場合
+            // Dateの場合
             else if (type.Equals(CHECK_TYPE.DATE))
             {
                 if (!string.IsNullOrEmpty(DpDate.Text)
@@ -244,7 +244,7 @@ namespace automatic_engine
                     // チェック結果がFALSEを戻す
                     return false;
                 }
-                else if (string.IsNullOrEmpty(TxtDate_Index.Text))
+                else if (string.IsNullOrEmpty(TxtDate_Index.Text) && !(bool)ChkDate_Last.IsChecked)
                 {
                     // エラーメッセージを表示する
                     System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -255,7 +255,7 @@ namespace automatic_engine
                     // チェック結果がFALSEを戻す
                     return false;
                 }
-                else if (!int.TryParse(TxtDate_Index.Text, out _))
+                else if (!int.TryParse(TxtDate_Index.Text, out _) && !(bool)ChkDate_Last.IsChecked)
                 {
                     // エラーメッセージを表示する
                     System.Windows.Forms.MessageBox.Show("Invalid Index", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -429,7 +429,10 @@ namespace automatic_engine
                 int numbering_from = 0;
                 if ((bool)RdoNumbering.IsChecked)
                 {
-                    numbering_at = int.Parse(TxtNumbering_Index.Text);
+                    if (!(bool)ChkNumbering_Last.IsChecked)
+                    {
+                        numbering_at = int.Parse(TxtNumbering_Index.Text);
+                    }
                     numbering_from = int.Parse(TxtNumbering_From.Text);
                 }
 
@@ -459,7 +462,7 @@ namespace automatic_engine
                         // 処理停止
                         return;
                     }
-                    else if (int.Parse(TxtNumbering_Index.Text) > shortestNameLength)
+                    else if (!(bool)ChkNumbering_Last.IsChecked && int.Parse(TxtNumbering_Index.Text) > shortestNameLength)
                     {
                         // エラーメッセージを表示する
                         System.Windows.Forms.MessageBox.Show(
@@ -475,7 +478,7 @@ namespace automatic_engine
                 }
                 else if ((bool)RdoDate.IsChecked)
                 {
-                    if (int.Parse(TxtDate_Index.Text) > shortestNameLength)
+                    if (!(bool)ChkDate_Last.IsChecked && int.Parse(TxtDate_Index.Text) > shortestNameLength)
                     {
                         // エラーメッセージを表示する
                         System.Windows.Forms.MessageBox.Show(
@@ -560,16 +563,28 @@ namespace automatic_engine
                     // Numbering処理
                     else if ((bool)RdoNumbering.IsChecked)
                     {
+                        // 変換位置を設定する
+                        int changeIndex = 0;
+                        if ((bool)ChkNumbering_Last.IsChecked) 
+                        {
+                            changeIndex = strOriginName.IndexOf(info.Extension);
+                        }
+                        else
+                        {
+                            changeIndex = numbering_at;
+                        }
+
                         // フォーマットチェックする時
                         if ((bool)ChkNumbering_Format.IsChecked)
                         {
                             // 変数をフォーマットする
                             int padNum = fileInfos.Length.ToString().Length;
-                            strChangeName = strOriginName.Insert(numbering_at, numbering_from.ToString().PadLeft(padNum, '0'));
+
+                            strChangeName = strOriginName.Insert(changeIndex, numbering_from.ToString().PadLeft(padNum, '0'));
                         }
                         else
                         {
-                            strChangeName = strOriginName.Insert(numbering_at, numbering_from.ToString());
+                            strChangeName = strOriginName.Insert(changeIndex, numbering_from.ToString());
                         }
 
                         // 昇順
@@ -588,17 +603,28 @@ namespace automatic_engine
                     {
                         string dateFormat = ((ComboBoxItem)CbbDateFormat.SelectedValue).Content.ToString();
 
+                        // 変換位置を設定する
+                        int changeIndex = 0;
+                        if ((bool)ChkDate_Last.IsChecked)
+                        {
+                            changeIndex = strOriginName.IndexOf(info.Extension);
+                        }
+                        else
+                        {
+                            changeIndex = int.Parse(TxtDate_Index.Text);
+                        }
+
                         // 日付を選択しない場合
                         if (string.IsNullOrEmpty(DpDate.Text))
                         {
                             // システム日付で印刷する
-                            strChangeName = strOriginName.Insert(int.Parse(TxtDate_Index.Text), DateTime.Now.ToString(dateFormat));
+                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Now.ToString(dateFormat));
                         }
                         // 日付を選択する場合
                         else
                         {
                             // 指定された日付で印刷する
-                            strChangeName = strOriginName.Insert(int.Parse(TxtDate_Index.Text), DateTime.Parse(DpDate.Text).ToString(dateFormat));
+                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Parse(DpDate.Text).ToString(dateFormat));
                         }
                     }
                     // Regex処理
@@ -723,6 +749,48 @@ namespace automatic_engine
             {
                 // 位置設定テキストボックスを活性になる
                 TxtInsertInto_Index.IsEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Numbering_Lastチェックボックスをチェックする時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChkNumbering_Last_Click(object sender, RoutedEventArgs e)
+        {
+            // 最後位置チェックボックスをチェックする場合
+            if ((bool)ChkNumbering_Last.IsChecked)
+            {
+                // 位置設定テキストボックスを非活性になる
+                TxtNumbering_Index.IsEnabled = false;
+            }
+            // 上記以外の場合
+            else
+            {
+                // 位置設定テキストボックスを活性になる
+                TxtNumbering_Index.IsEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Date_Lastチェックボックスをチェックする時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChkDate_Last_Click(object sender, RoutedEventArgs e)
+        {
+            // 最後位置チェックボックスをチェックする場合
+            if ((bool)ChkDate_Last.IsChecked)
+            {
+                // 位置設定テキストボックスを非活性になる
+                TxtDate_Index.IsEnabled = false;
+            }
+            // 上記以外の場合
+            else
+            {
+                // 位置設定テキストボックスを活性になる
+                TxtDate_Index.IsEnabled = true;
             }
         }
     }
