@@ -155,27 +155,30 @@ namespace automatic_engine
                     // チェック結果がFALSEを戻す
                     return false;
                 }
-                else if (string.IsNullOrEmpty(TxtInsertInto_Index.Text))
+                else if (!(bool)ChkInsertInto_Last.IsChecked)
                 {
-                    // エラーメッセージを表示する
-                    System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (string.IsNullOrEmpty(TxtInsertInto_Index.Text))
+                    {
+                        // エラーメッセージを表示する
+                        System.Windows.Forms.MessageBox.Show("Please input Condition", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    // エラーコントロールをフォーカスする
-                    TxtInsertInto_Index.Focus();
+                        // エラーコントロールをフォーカスする
+                        TxtInsertInto_Index.Focus();
 
-                    // チェック結果がFALSEを戻す
-                    return false;
-                }
-                else if (!int.TryParse(TxtInsertInto_Index.Text, out _))
-                {
-                    // エラーメッセージを表示する
-                    System.Windows.Forms.MessageBox.Show("Invalid Index", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        // チェック結果がFALSEを戻す
+                        return false;
+                    }
+                    else if (!int.TryParse(TxtInsertInto_Index.Text, out _))
+                    {
+                        // エラーメッセージを表示する
+                        System.Windows.Forms.MessageBox.Show("Invalid Index", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                    // エラーコントロールをフォーカスする
-                    TxtInsertInto_Index.Focus();
+                        // エラーコントロールをフォーカスする
+                        TxtInsertInto_Index.Focus();
 
-                    // チェック結果がFALSEを戻す
-                    return false;
+                        // チェック結果がFALSEを戻す
+                        return false;
+                    }
                 }
             }
             // Numberingの場合
@@ -544,7 +547,15 @@ namespace automatic_engine
                     // Insert-Into処理
                     else if ((bool)RdoInsert.IsChecked)
                     {
-                        strChangeName = strOriginName.Insert(int.Parse(TxtInsertInto_Index.Text), TxtInsertInto_Word.Text);
+                        // 最後位置チェックボックスをチェックする場合
+                        if ((bool)ChkInsertInto_Last.IsChecked)
+                        {
+                            strChangeName = strOriginName.Insert(strOriginName.IndexOf(info.Extension), TxtInsertInto_Word.Text);
+                        }
+                        else
+                        {
+                            strChangeName = strOriginName.Insert(int.Parse(TxtInsertInto_Index.Text), TxtInsertInto_Word.Text);
+                        }
                     }
                     // Numbering処理
                     else if ((bool)RdoNumbering.IsChecked)
@@ -691,6 +702,27 @@ namespace automatic_engine
                 // 非活性
                 CbbSortBy.IsEnabled = false;
                 ChkNumbering_Reverse.IsEnabled = false;
+            }
+        }
+
+        /// <summary>
+        /// InsertInto_Lastチェックボックスをチェックする時
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChkInsertInto_Last_Click(object sender, RoutedEventArgs e)
+        {
+            // 最後位置チェックボックスをチェックする場合
+            if ((bool)ChkInsertInto_Last.IsChecked)
+            {
+                // 位置設定テキストボックスを非活性になる
+                TxtInsertInto_Index.IsEnabled = false;
+            }
+            // 上記以外の場合
+            else
+            {
+                // 位置設定テキストボックスを活性になる
+                TxtInsertInto_Index.IsEnabled = true;
             }
         }
     }

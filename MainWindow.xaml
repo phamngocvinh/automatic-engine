@@ -26,7 +26,7 @@
         <Label x:Name="LblInsertInto_Word" Content="Insert" HorizontalAlignment="Left" Margin="5.8,103,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="40"/>
         <TextBox x:Name="TxtInsertInto_Word" Height="24" Margin="12.6,104,4.6,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
         <Label x:Name="LblInsertInto_Index" Content="Into" HorizontalAlignment="Left" Margin="5.8,132,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="12.6,133,4.6,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0"/>
+        <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="13,133,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" HorizontalAlignment="Left" Width="35"/>
         <Button x:Name="BtnClear" Content="Reset" Margin="0,0,154.6,9.8" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="ResetInput" Height="23" VerticalAlignment="Bottom"/>
         <RadioButton x:Name="RdoReplace" Content="" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="14" Width="19" IsChecked="True" GroupName="Option"/>
         <RadioButton x:Name="RdoInsert" Content="" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
@@ -65,6 +65,7 @@
         <Label x:Name="LblRegex" Content="Regex" HorizontalAlignment="Left" Margin="6.8,286,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtRegex_Find" Height="22" Margin="9.6,288,7,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2"/>
         <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="9.6,315,7,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="3"/>
+        <CheckBox x:Name="ChkInsertInto_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="53,138,0,0" VerticalAlignment="Top" Click="ChkInsertInto_Last_Click"/>
 
     </Grid>
 </Window>
