@@ -5,30 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="Automatic-Engine" Height="439.124" Width="623.557" MinWidth="623.557" MinHeight="438.242" IsTabStop="False">
+        Title="Automatic-Engine" Height="439.124" Width="623.557" MinWidth="623.557" MinHeight="438.242" IsTabStop="False" MaxHeight="439.124">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35.2"/>
             <ColumnDefinition Width="83.2"/>
-            <ColumnDefinition Width="304*"/>
-            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="76.8"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="LblPath" Content="Folder Path" HorizontalAlignment="Left" Margin="7,10,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1"/>
         <TextBox x:Name="TxtPath" Height="23" Margin="13,10,4,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" Grid.ColumnSpan="2"/>
-        <Button x:Name="BtnBrowse" Content="Browse" Margin="0,10,6,0" VerticalAlignment="Top" Click="BtnBrowse_Click" Height="23" Grid.Column="4" TabIndex="1"/>
+        <Button x:Name="BtnBrowse" Content="Browse" Margin="2,10,4,0" VerticalAlignment="Top" Click="BtnBrowse_Click" Height="23" Grid.Column="3" TabIndex="1"/>
         <Label x:Name="LblReplace" Content="Replace" HorizontalAlignment="Left" Margin="7,43,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <Label x:Name="LblWith" Content="With" HorizontalAlignment="Left" Margin="7,71,0,0" VerticalAlignment="Top" Height="26" Width="35" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtReplace" Height="23" Margin="13,43,4,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2" Grid.ColumnSpan="2"/>
         <TextBox x:Name="TxtWith" Height="23" Margin="13,71,4,0"  VerticalAlignment="Top" Grid.Column="2" TabIndex="3" Grid.ColumnSpan="2"/>
-        <Button x:Name="BtnExecute" Content="Execute" Margin="0,0,5,10" Click="BtnExecute_Click" Grid.Column="3" HorizontalAlignment="Right" Width="70" TabIndex="5" Height="23" VerticalAlignment="Bottom"/>
-        <Button x:Name="BtnPreview" Content="Preview" Margin="0,0,80,10" Click="BtnPreview_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
-        <Button x:Name="BtnExit" Content="Exit" Margin="0,0,0,10" Click="BtnExit_Click" Grid.Column="4" HorizontalAlignment="Left" Width="70" TabIndex="6" Height="23" VerticalAlignment="Bottom"/>
+        <Button x:Name="BtnExecute" Content="Execute" Margin="0,0,4,10" Click="BtnExecute_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="5" Height="23" VerticalAlignment="Bottom"/>
+        <Button x:Name="BtnPreview" Content="Preview" Margin="0,0,79,10" Click="BtnPreview_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Height="23" VerticalAlignment="Bottom"/>
+        <Button x:Name="BtnExit" Content="Exit" Margin="1,0,0,10" Click="BtnExit_Click" Grid.Column="3" HorizontalAlignment="Left" Width="70" TabIndex="6" Height="23" VerticalAlignment="Bottom"/>
         <Label x:Name="LblInsertInto_Word" Content="Insert" HorizontalAlignment="Left" Margin="6,103,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="40"/>
         <TextBox x:Name="TxtInsertInto_Word" Height="24" Margin="13,104,4,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" Grid.ColumnSpan="2"/>
         <Label x:Name="LblInsertInto_Index" Content="Into" HorizontalAlignment="Left" Margin="6,132,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="13,133,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" HorizontalAlignment="Left" Width="35"/>
-        <Button x:Name="BtnClear" Content="Reset" Margin="0,0,37.897,10" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="ResetInput" Height="23" VerticalAlignment="Bottom"/>
+        <Button x:Name="BtnClear" Content="Reset" Margin="0,0,154,10" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="ResetInput" Height="23" VerticalAlignment="Bottom"/>
         <RadioButton x:Name="RdoReplace" Content="" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="14" Width="19" IsChecked="True" GroupName="Option"/>
         <RadioButton x:Name="RdoInsert" Content="" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
         <Separator Margin="0,0,0,43" Grid.ColumnSpan="5" Height="1" VerticalAlignment="Bottom"/>
@@ -67,7 +66,7 @@
         <TextBox x:Name="TxtRegex_Find" Height="22" Margin="10,298,7,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2" Grid.ColumnSpan="2"/>
         <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="10,325,7,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="3" Grid.ColumnSpan="2"/>
         <CheckBox x:Name="ChkInsertInto_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="53,138,0,0" VerticalAlignment="Top" Click="ChkInsertInto_Last_Click"/>
-        <CheckBox x:Name="ChkNumbering_Last" Content="Last" Grid.Column="3" HorizontalAlignment="Left" Margin="19.103,172,0,0" VerticalAlignment="Top" Click="ChkNumbering_Last_Click"/>
+        <CheckBox x:Name="ChkNumbering_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="245,142,0,0" VerticalAlignment="Top" Click="ChkNumbering_Last_Click"/>
         <CheckBox x:Name="ChkDate_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="192,271,0,0" VerticalAlignment="Top" Click="ChkDate_Last_Click"/>
 
     </Grid>
