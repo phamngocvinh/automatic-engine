@@ -66,7 +66,7 @@
         <TextBox x:Name="TxtRegex_Find" Height="22" Margin="10,298,7,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2" Grid.ColumnSpan="2"/>
         <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="10,325,7,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="3" Grid.ColumnSpan="2"/>
         <CheckBox x:Name="ChkInsertInto_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="53,138,0,0" VerticalAlignment="Top" Click="ChkInsertInto_Last_Click"/>
-        <CheckBox x:Name="ChkNumbering_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="245,142,0,0" VerticalAlignment="Top" Click="ChkNumbering_Last_Click"/>
+        <CheckBox x:Name="ChkNumbering_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="303,172,0,0" VerticalAlignment="Top" Click="ChkNumbering_Last_Click"/>
         <CheckBox x:Name="ChkDate_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="192,271,0,0" VerticalAlignment="Top" Click="ChkDate_Last_Click"/>
 
     </Grid>
