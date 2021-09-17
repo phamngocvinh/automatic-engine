@@ -20,6 +20,12 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 <!-- PROJECT LOGO -->
@@ -61,6 +67,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#build">Build</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -83,26 +90,27 @@
 * [Visual Studio](https://visualstudio.microsoft.com/vs/community/)
 
 
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
-
+<!-- Installation -->
 ### Installation
+
+1. Download the [latest version](https://github.com/phamngocvinh/automatic-engine/releases/latest)
+2. Run automatic-engine.exe
+
+_For more examples, please refer to the [Documentation](https://github.com/phamngocvinh/automatic-engine/wiki)_
+
+<!-- Build -->
+### Build
+
+To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
    git clone https://github.com/phamngocvinh/automatic-engine.git
    ```
-2. Open and run with VS
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-1. Download the [latest version](https://github.com/phamngocvinh/automatic-engine/releases/latest)
-
-_For more examples, please refer to the [Documentation](https://github.com/phamngocvinh/automatic-engine/wiki)_
+2. Run project with VS
 
 
 
@@ -144,15 +152,15 @@ Project Link: [https://github.com/phamngocvinh/automatic-engine](https://github.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/phamngocvinh/repo.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/phamngocvinh/automatic-engine/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/phamngocvinh/repo.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
 [forks-url]: https://github.com/phamngocvinh/automatic-engine/network/members
-[stars-shield]: https://img.shields.io/github/stars/phamngocvinh/repo.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
 [stars-url]: https://github.com/phamngocvinh/automatic-engine/stargazers
-[issues-shield]: https://img.shields.io/github/issues/phamngocvinh/repo.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/phamngocvinh/automatic-engine/issues
-[license-shield]: https://img.shields.io/github/license/phamngocvinh/repo.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/phamngocvinh/automatic-engine/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/phamngocvinh
