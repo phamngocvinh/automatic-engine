@@ -21,6 +21,7 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 [![Download][download-shield]][download-url]
+[![Release][release-shield]][release-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -160,6 +161,8 @@ Project Link: [https://github.com/phamngocvinh/automatic-engine](https://github.
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [download-shield]: https://img.shields.io/github/downloads/phamngocvinh/automatic-engine/total?color=Green&style=for-the-badge
 [download-url]: https://github.com/phamngocvinh/automatic-engine/releases/latest
+[release-shield]: https://img.shields.io/github/v/release/phamngocvinh/automatic-engine?style=for-the-badge
+[release-url]: https://github.com/phamngocvinh/automatic-engine/releases/latest
 [issues-shield]: https://img.shields.io/github/issues/phamngocvinh/automatic-engine?style=for-the-badge
 [issues-url]: https://github.com/phamngocvinh/automatic-engine/issues
 [license-shield]: https://img.shields.io/github/license/phamngocvinh/automatic-engine?color=red&style=for-the-badge
