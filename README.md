@@ -72,6 +72,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -145,6 +146,14 @@ Pham Ngoc Vinh - phamngocvinh@live.com
 
 Project Link: [https://github.com/phamngocvinh/automatic-engine](https://github.com/phamngocvinh/automatic-engine)
 
+
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+
+* [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/)
+* [Windows Presentation Foundation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/)
+* [Shields.io](https://shields.io)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
