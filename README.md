@@ -20,6 +20,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![Download][download-shield]][download-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -67,7 +68,6 @@
         <li><a href="#build">Build</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -149,16 +149,12 @@ Project Link: [https://github.com/phamngocvinh/automatic-engine](https://github.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/phamngocvinh/automatic-engine/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/phamngocvinh/automatic-engine/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/phamngocvinh/automatic-engine/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[download-shield]: https://img.shields.io/github/downloads/phamngocvinh/automatic-engine/total?color=Green&style=for-the-badge
+[download-url]: https://github.com/phamngocvinh/automatic-engine/releases/latest
+[issues-shield]: https://img.shields.io/github/issues/phamngocvinh/automatic-engine?style=for-the-badge
 [issues-url]: https://github.com/phamngocvinh/automatic-engine/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/phamngocvinh/automatic-engine/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/phamngocvinh/automatic-engine?color=red&style=for-the-badge
+[license-url]: https://github.com/phamngocvinh/automatic-engine/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/phamngocvinh
 [product-screenshot]: images/screenshot.jpg
