@@ -793,5 +793,16 @@ namespace automatic_engine
                 TxtDate_Index.IsEnabled = true;
             }
         }
+
+        /// <summary>
+        /// Aboutページを表示する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnAbout_Click(object sender, RoutedEventArgs e)
+        {
+            // Aboutページを表示する
+            new AboutPage().Show();
+        }
     }
 }

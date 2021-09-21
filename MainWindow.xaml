@@ -68,6 +68,7 @@
         <CheckBox x:Name="ChkInsertInto_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="53,138,0,0" VerticalAlignment="Top" Click="ChkInsertInto_Last_Click"/>
         <CheckBox x:Name="ChkNumbering_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="303,172,0,0" VerticalAlignment="Top" Click="ChkNumbering_Last_Click"/>
         <CheckBox x:Name="ChkDate_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="192,271,0,0" VerticalAlignment="Top" Click="ChkDate_Last_Click"/>
+        <Button x:Name="BtnAbout" Content="About" Margin="0,0,37.4,9.6" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="BtnAbout_Click" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
