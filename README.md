@@ -67,6 +67,7 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage-example">Usage Example</a></li>
         <li><a href="#build">Build</a></li>
       </ul>
     </li>
@@ -85,7 +86,9 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/phamngocvinh/automatic-engine/)
 
-****** WIP ******
+Automatic Engine allow you to rename multiple files with difference options.
+
+This help you to reduce unnecessary repeated task
 
 ### Built With
 
@@ -100,6 +103,13 @@
 
 1. Download the [latest version](https://github.com/phamngocvinh/automatic-engine/releases/latest)
 2. Run automatic-engine.exe
+
+### Usage Example
+1. Specific folder contain multiple files in `Folder Path`
+2. Input Word you want to `Replace`
+3. Input Word you want to replace `With`
+4. Press `Preview` button to show the result before execution
+5. Press `Execute` to begin rename process
 
 _For more examples, please refer to the [Documentation](https://github.com/phamngocvinh/automatic-engine/wiki)_
 
