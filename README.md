@@ -43,7 +43,7 @@
     <a href="https://github.com/phamngocvinh/automatic-engine"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/phamngocvinh/automatic-engine">View Demo</a>
+    <a href="https://github.com/phamngocvinh/automatic-engine/wiki/Usage-Example">View Demo</a>
     ·
     <a href="https://github.com/phamngocvinh/automatic-engine/issues">Report Bug</a>
     ·
@@ -111,7 +111,7 @@ This help you to reduce unnecessary repeated task
 4. Press `Preview` button to show the result before execution
 5. Press `Execute` to begin rename process
 
-_For more examples, please refer to the [Documentation](https://github.com/phamngocvinh/automatic-engine/wiki)_
+_For more examples, please refer to the [Documentation](https://github.com/phamngocvinh/automatic-engine/wiki/Usage-Example)_
 
 <!-- Build -->
 ### Build
