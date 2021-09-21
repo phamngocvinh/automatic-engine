@@ -802,7 +802,7 @@ namespace automatic_engine
         private void BtnAbout_Click(object sender, RoutedEventArgs e)
         {
             // Aboutページを表示する
-            new AboutPage().Show();
+            new AboutPage().ShowDialog();
         }
     }
 }
