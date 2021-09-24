@@ -89,7 +89,7 @@ To get a local copy up and running follow these simple steps.
    ```
 2. Run project with VS
 
-## :muscle: Usage
+## :man_teacher: Usage
 1. Specific folder contain multiple files in `Folder Path`
 2. Input Word you want to `Replace`
 3. Input Word you want to replace `With`
