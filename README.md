@@ -57,7 +57,7 @@
 </details>
 
 <!-- ABOUT THE PROJECT -->
-## :question: About The Project
+## :stars: About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/phamngocvinh/automatic-engine/)
 
