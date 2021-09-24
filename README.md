@@ -1,25 +1,3 @@
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Thanks again! Now go create something AMAZING! :D
-***
-***
-***
-*** To avoid retyping too much info. Do a search and replace for the following:
-*** github_username, repo_name, twitter_handle, email, project_title, project_description
--->
-
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 <h3 align="center">
 
 [![Download][download-shield]][download-url]
@@ -51,8 +29,6 @@
   </p>
 </p>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
@@ -71,6 +47,7 @@
         <li><a href="#build">Build</a></li>
       </ul>
     </li>
+    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -79,10 +56,8 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## :question: About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://github.com/phamngocvinh/automatic-engine/)
 
@@ -94,24 +69,14 @@ This help you to reduce unnecessary repeated task
 
 * [Visual Studio](https://visualstudio.microsoft.com/vs/community/)
 
-
 <!-- GETTING STARTED -->
-## Getting Started
+## :beginner: Getting Started
 
 <!-- Installation -->
 ### Installation
 
 1. Download the [latest version](https://github.com/phamngocvinh/automatic-engine/releases/latest)
 2. Run automatic-engine.exe
-
-### Usage Example
-1. Specific folder contain multiple files in `Folder Path`
-2. Input Word you want to `Replace`
-3. Input Word you want to replace `With`
-4. Press `Preview` button to show the result before execution
-5. Press `Execute` to begin rename process
-
-_For more examples, please refer to the [Documentation](https://github.com/phamngocvinh/automatic-engine/wiki/Usage-Example)_
 
 <!-- Build -->
 ### Build
@@ -124,17 +89,22 @@ To get a local copy up and running follow these simple steps.
    ```
 2. Run project with VS
 
+## :muscle: Usage
+1. Specific folder contain multiple files in `Folder Path`
+2. Input Word you want to `Replace`
+3. Input Word you want to replace `With`
+4. Press `Preview` button to show the result before execution
+5. Press `Execute` to begin rename process
 
+_For more examples, please refer to the [Documentation](https://github.com/phamngocvinh/automatic-engine/wiki/Usage-Example)_
 
 <!-- ROADMAP -->
-## Roadmap
+## :world_map: Roadmap
 
 See the [open issues](https://github.com/phamngocvinh/automatic-engine/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- CONTRIBUTING -->
-## Contributing
+## :rocket: Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -144,32 +114,25 @@ Contributions are what make the open source community such an amazing place to l
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-
-
 <!-- LICENSE -->
-## License
+## :closed_book: License
 
 Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
-
-
 <!-- CONTACT -->
-## Contact
+## :mailbox: Contact
 
 [![Mail][mail-shield]][mail-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 Project Link: [https://github.com/phamngocvinh/automatic-engine](https://github.com/phamngocvinh/automatic-engine)
 
-
-
 <!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
+## :books: Acknowledgements
 
 * [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/)
 * [Windows Presentation Foundation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/)
 * [Shields.io](https://shields.io)
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
