@@ -16,7 +16,7 @@
   <h3 align="center">Automatic Engine</h3>
 
   <p align="center">
-    Tool to rename multiple files name with variety of conditions
+    :computer: Tool to rename multiple files name with variety of conditions
     <br />
     <a href="https://github.com/phamngocvinh/automatic-engine"><strong>Explore the docs »</strong></a>
     <br />
