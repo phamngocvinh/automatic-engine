@@ -18,57 +18,57 @@
         <Button x:Name="BtnBrowse" Content="Browse" Margin="2,10,4,0" VerticalAlignment="Top" Click="BtnBrowse_Click" Height="23" Grid.Column="3" TabIndex="1"/>
         <Label x:Name="LblReplace" Content="Replace" HorizontalAlignment="Left" Margin="7,43,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <Label x:Name="LblWith" Content="With" HorizontalAlignment="Left" Margin="7,71,0,0" VerticalAlignment="Top" Height="26" Width="35" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtReplace" Height="23" Margin="13,43,4,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="TxtWith" Height="23" Margin="13,71,4,0"  VerticalAlignment="Top" Grid.Column="2" TabIndex="3" Grid.ColumnSpan="2"/>
-        <Button x:Name="BtnExecute" Content="Execute" Margin="0,0,4,10" Click="BtnExecute_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="5" Height="23" VerticalAlignment="Bottom"/>
-        <Button x:Name="BtnPreview" Content="Preview" Margin="0,0,79,10" Click="BtnPreview_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Height="23" VerticalAlignment="Bottom"/>
-        <Button x:Name="BtnExit" Content="Exit" Margin="1,0,0,10" Click="BtnExit_Click" Grid.Column="3" HorizontalAlignment="Left" Width="70" TabIndex="6" Height="23" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="TxtReplace" Height="23" Margin="13,43,4,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="3" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TxtWith" Height="23" Margin="13,71,4,0"  VerticalAlignment="Top" Grid.Column="2" TabIndex="4" Grid.ColumnSpan="2"/>
+        <Button x:Name="BtnExecute" Content="Execute" Margin="0,0,4,10" Click="BtnExecute_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="29" Height="23" VerticalAlignment="Bottom"/>
+        <Button x:Name="BtnPreview" Content="Preview" Margin="0,0,79,10" Click="BtnPreview_Click" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="28" Height="23" VerticalAlignment="Bottom"/>
+        <Button x:Name="BtnExit" Content="Exit" Margin="1,0,0,10" Click="BtnExit_Click" Grid.Column="3" HorizontalAlignment="Left" Width="70" TabIndex="30" Height="23" VerticalAlignment="Bottom"/>
         <Label x:Name="LblInsertInto_Word" Content="Insert" HorizontalAlignment="Left" Margin="6,103,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="40"/>
-        <TextBox x:Name="TxtInsertInto_Word" Height="24" Margin="13,104,4,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TxtInsertInto_Word" Height="24" Margin="13,104,4,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="6" Grid.ColumnSpan="2"/>
         <Label x:Name="LblInsertInto_Index" Content="Into" HorizontalAlignment="Left" Margin="6,132,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="13,133,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" HorizontalAlignment="Left" Width="35"/>
-        <Button x:Name="BtnClear" Content="Reset" Margin="0,0,154,10" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="ResetInput" Height="23" VerticalAlignment="Bottom"/>
-        <RadioButton x:Name="RdoReplace" Content="" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="14" Width="19" IsChecked="True" GroupName="Option"/>
-        <RadioButton x:Name="RdoInsert" Content="" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
+        <TextBox x:Name="TxtInsertInto_Index" Height="24" Margin="13,133,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="7" HorizontalAlignment="Left" Width="35"/>
+        <Button x:Name="BtnClear" Content="Reset" Margin="0,0,154,10" Grid.Column="2" HorizontalAlignment="Right" Width="70" TabIndex="27" Click="ResetInput" Height="23" VerticalAlignment="Bottom"/>
+        <RadioButton x:Name="RdoReplace" Content="" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Height="14" Width="19" IsChecked="True" GroupName="Option" TabIndex="2"/>
+        <RadioButton x:Name="RdoInsert" Content="" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option" TabIndex="5"/>
         <Separator Margin="0,0,0,43" Grid.ColumnSpan="5" Height="1" VerticalAlignment="Bottom"/>
         <Label x:Name="LblNumbering" Content="Numbering" HorizontalAlignment="Left" Margin="6,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="70"/>
-        <TextBox x:Name="TxtNumbering_Index" Height="24" Margin="40,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
-        <RadioButton x:Name="RdoNumbering" Content="" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
+        <TextBox x:Name="TxtNumbering_Index" Height="24" Margin="40,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="10" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
+        <RadioButton x:Name="RdoNumbering" Content="" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option" TabIndex="9"/>
         <Label x:Name="LblNumbering_At" Content="At" HorizontalAlignment="Left" Margin="13,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtNumbering_From" Height="24" Margin="122,167,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
+        <TextBox x:Name="TxtNumbering_From" Height="24" Margin="122,167,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="11" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
         <Label x:Name="LblNumbering_From" Content="From" HorizontalAlignment="Left" Margin="80,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <RadioButton x:Name="RdoNumbering_Increase" Content="Increase" HorizontalAlignment="Left" Margin="164,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" IsChecked="True" GroupName="Numbering"/>
-        <RadioButton x:Name="RdoNumbering_Decrease" Content="Decrease" HorizontalAlignment="Left" Margin="231,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" GroupName="Numbering"/>
-        <CheckBox x:Name="ChkNumbering_Format" Content="Format?" Grid.Column="2" HorizontalAlignment="Left" Margin="40,202,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="ChkNumbering_SortBy" Content="Sort by" Grid.Column="2" HorizontalAlignment="Left" Margin="117,202,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click"/>
-        <ComboBox x:Name="CbbSortBy" Grid.Column="2" HorizontalAlignment="Left" Margin="178,198,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" IsEnabled="False">
+        <RadioButton x:Name="RdoNumbering_Increase" Content="Increase" HorizontalAlignment="Left" Margin="164,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" IsChecked="True" GroupName="Numbering" TabIndex="12"/>
+        <RadioButton x:Name="RdoNumbering_Decrease" Content="Decrease" HorizontalAlignment="Left" Margin="231,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" GroupName="Numbering" TabIndex="13"/>
+        <CheckBox x:Name="ChkNumbering_Format" Content="Format?" Grid.Column="2" HorizontalAlignment="Left" Margin="40,202,0,0" VerticalAlignment="Top" TabIndex="15"/>
+        <CheckBox x:Name="ChkNumbering_SortBy" Content="Sort by" Grid.Column="2" HorizontalAlignment="Left" Margin="117,202,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click" TabIndex="16"/>
+        <ComboBox x:Name="CbbSortBy" Grid.Column="2" HorizontalAlignment="Left" Margin="178,198,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" IsEnabled="False" TabIndex="17">
             <ComboBoxItem Content="Name" HorizontalAlignment="Left" Width="118.4"/>
             <ComboBoxItem Content="Modified Date"/>
             <ComboBoxItem Content="Created Date"/>
             <ComboBoxItem Content="Size"/>
         </ComboBox>
-        <CheckBox x:Name="ChkNumbering_Reverse" Content="Reverse" Grid.Column="2" HorizontalAlignment="Left" Margin="303,202,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click" IsEnabled="False" Grid.ColumnSpan="2"/>
-        <DatePicker x:Name="DpDate" Grid.Column="2" HorizontalAlignment="Left" Margin="58,242,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="101"/>
+        <CheckBox x:Name="ChkNumbering_Reverse" Content="Reverse" Grid.Column="2" HorizontalAlignment="Left" Margin="303,202,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click" IsEnabled="False" Grid.ColumnSpan="2" TabIndex="18"/>
+        <DatePicker x:Name="DpDate" Grid.Column="2" HorizontalAlignment="Left" Margin="58,242,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" Width="101" TabIndex="20"/>
         <Label x:Name="LblDate" Content="Date" HorizontalAlignment="Left" Margin="6,239,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp" Width="70"/>
-        <RadioButton x:Name="RdoDate" Content="" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
+        <RadioButton x:Name="RdoDate" Content="" HorizontalAlignment="Left" Margin="10,245,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option" TabIndex="19"/>
         <Label x:Name="LblDate_Insert" Content="Insert" HorizontalAlignment="Left" Margin="13,241,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtDate_Index" Height="24" Margin="192,242,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="0" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
+        <TextBox x:Name="TxtDate_Index" Height="24" Margin="192,242,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="21" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
         <Label x:Name="LblDate_At" Content="at" HorizontalAlignment="Left" Margin="165,241,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <Label x:Name="LblDate_Format" Content="Format" HorizontalAlignment="Left" Margin="232,239,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <ComboBox x:Name="CbbDateFormat" Grid.Column="2" HorizontalAlignment="Left" Margin="285,243,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" Grid.ColumnSpan="2">
+        <ComboBox x:Name="CbbDateFormat" Grid.Column="2" HorizontalAlignment="Left" Margin="285,243,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" Grid.ColumnSpan="2" TabIndex="22">
             <ComboBoxItem Content="yyyyMMdd" HorizontalAlignment="Left" Width="118.4"/>
             <ComboBoxItem Content="yyyy-MM-dd"/>
             <ComboBoxItem Content="ddMMyyyy"/>
             <ComboBoxItem Content="dd-MM-yyyy"/>
         </ComboBox>
-        <RadioButton x:Name="RdoRegex" Content="" HorizontalAlignment="Left" Margin="10,302,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option"/>
+        <RadioButton x:Name="RdoRegex" Content="" HorizontalAlignment="Left" Margin="10,302,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option" TabIndex="24"/>
         <Label x:Name="LblRegex" Content="Regex" HorizontalAlignment="Left" Margin="7,296,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <TextBox x:Name="TxtRegex_Find" Height="22" Margin="10,298,7,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="2" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="10,325,7,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="3" Grid.ColumnSpan="2"/>
-        <CheckBox x:Name="ChkInsertInto_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="53,138,0,0" VerticalAlignment="Top" Click="ChkInsertInto_Last_Click"/>
-        <CheckBox x:Name="ChkNumbering_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="303,172,0,0" VerticalAlignment="Top" Click="ChkNumbering_Last_Click"/>
-        <CheckBox x:Name="ChkDate_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="192,271,0,0" VerticalAlignment="Top" Click="ChkDate_Last_Click"/>
-        <Button x:Name="BtnAbout" Content="About" Margin="0,0,37.4,9.6" HorizontalAlignment="Right" Width="70" TabIndex="4" Click="BtnAbout_Click" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TxtRegex_Find" Height="22" Margin="10,298,7,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="25" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="TxtRegex_Replace" Height="23" Margin="10,325,7,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="26" Grid.ColumnSpan="2"/>
+        <CheckBox x:Name="ChkInsertInto_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="53,138,0,0" VerticalAlignment="Top" Click="ChkInsertInto_Last_Click" TabIndex="8"/>
+        <CheckBox x:Name="ChkNumbering_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="303,172,0,0" VerticalAlignment="Top" Click="ChkNumbering_Last_Click" TabIndex="14"/>
+        <CheckBox x:Name="ChkDate_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="192,271,0,0" VerticalAlignment="Top" Click="ChkDate_Last_Click" TabIndex="23"/>
+        <Button x:Name="BtnAbout" Content="About" Margin="0,0,37.4,9.6" HorizontalAlignment="Right" Width="70" TabIndex="31" Click="BtnAbout_Click" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
