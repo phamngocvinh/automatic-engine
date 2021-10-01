@@ -403,7 +403,6 @@ namespace automatic_engine
                     {
                         return;
                     }
-
                 }
 
                 // 指定パスを取得する
@@ -523,6 +522,17 @@ namespace automatic_engine
                     if ((bool)ChkNumbering_Reverse.IsChecked)
                     {
                         fileInfos = fileInfos.Reverse().ToArray();
+                    }
+                }
+
+                // 実施前バックアップ
+                if ((bool)ChkBackup.IsChecked && !isPreview)
+                {
+                    var strBackupPath = Directory.CreateDirectory(TxtPath.Text).FullName + "\\" + "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                    Directory.CreateDirectory(strBackupPath);
+                    foreach (FileInfo info in fileInfos)
+                    {
+                        File.Copy(info.FullName, strBackupPath + "\\" + info.Name);
                     }
                 }
 
