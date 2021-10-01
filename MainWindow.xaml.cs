@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,19 +30,23 @@ namespace automatic_engine
         /// <summary>
         /// 名前で順番
         /// </summary>
-        private const string SORTBY_NAME = "Name";
+        private readonly string SORTBY_NAME = "Name";
         /// <summary>
         /// 編集日で順番
         /// </summary>
-        private const string SORTBY_MODIFIED = "Modified Date";
+        private readonly string SORTBY_MODIFIED = "Modified Date";
         /// <summary>
         /// 作成日で順番
         /// </summary>
-        private const string SORTBY_CREATED = "Created Date";
+        private readonly string SORTBY_CREATED = "Created Date";
         /// <summary>
         /// サイズで順番
         /// </summary>
-        private const string SORTBY_SIZE = "Size";
+        private readonly string SORTBY_SIZE = "Size";
+        /// <summary>
+        /// バージョン
+        /// </summary>
+        private readonly Version CURRENT_VERSION = new Version("1.1.0");
 
         /// <summary>
         /// コンストラクタ
@@ -50,6 +55,7 @@ namespace automatic_engine
         {
             InitializeComponent();
             TxtPath.Focus();
+            CheckVersion();
         }
 
         /// <summary>
@@ -575,7 +581,7 @@ namespace automatic_engine
                     {
                         // 変換位置を設定する
                         int changeIndex = 0;
-                        if ((bool)ChkNumbering_Last.IsChecked) 
+                        if ((bool)ChkNumbering_Last.IsChecked)
                         {
                             changeIndex = strOriginName.IndexOf(info.Extension);
                         }
@@ -813,6 +819,46 @@ namespace automatic_engine
         {
             // Aboutページを表示する
             new AboutPage().ShowDialog();
+        }
+
+        /// <summary>
+        /// 新しいバージョンが存在するかチェックする
+        /// </summary>
+        /// <returns></returns>
+        private void CheckVersion()
+        {
+            try
+            {
+                const string GITHUB_API = "https://api.github.com/repos/{0}/{1}/releases";
+                WebClient webClient = new WebClient();
+                webClient.Headers.Add("User-Agent", "Unity web player");
+                Uri uri = new Uri(string.Format(GITHUB_API, "phamngocvinh", "automatic-engine"));
+                string releases = webClient.DownloadString(uri);
+
+                string pattern = @"v(\d+.\d+.\d+)";
+                Regex rg = new Regex(pattern);
+                MatchCollection matchedAuthors = rg.Matches(releases);
+                Version version = new Version(matchedAuthors[0].Groups[1].Value);
+
+                if (version.CompareTo(CURRENT_VERSION) > 0)
+                {
+                    var msg = "A new version of Automatic Engine is available\r\nNewest: {0}\r\nCurrent: {1}\r\nWould you like to upgrade it now ?";
+                    msg = string.Format(msg, version, CURRENT_VERSION);
+                    DialogResult result = System.Windows.Forms.MessageBox.Show(msg, "Update App?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result.Equals(System.Windows.Forms.DialogResult.Yes))
+                    {
+                        System.Diagnostics.Process.Start("https://github.com/phamngocvinh/automatic-engine/releases/latest");
+                        System.Windows.Application.Current.Shutdown();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                // エラーメッセージを表示する
+                System.Windows.Forms.MessageBox.Show(
+                    string.Format("Internal error\r\nError message:{0}", e.Message),
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
