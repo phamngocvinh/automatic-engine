@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="Automatic-Engine" Height="439.124" Width="623.557" MinWidth="623.557" MinHeight="438.242" IsTabStop="False" MaxHeight="439.124">
+        Title="Automatic Engine" Height="439.124" Width="623.557" MinWidth="623.557" MinHeight="438.242" IsTabStop="False" MaxHeight="439.124">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35.2"/>
@@ -55,12 +55,6 @@
         <TextBox x:Name="TxtDate_Index" Height="24" Margin="192,242,0,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="21" MaxLength="3" HorizontalAlignment="Left" Width="35"/>
         <Label x:Name="LblDate_At" Content="at" HorizontalAlignment="Left" Margin="165,241,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <Label x:Name="LblDate_Format" Content="Format" HorizontalAlignment="Left" Margin="232,239,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
-        <ComboBox x:Name="CbbDateFormat" Grid.Column="2" HorizontalAlignment="Left" Margin="285,243,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" Grid.ColumnSpan="2" TabIndex="22">
-            <ComboBoxItem Content="yyyyMMdd" HorizontalAlignment="Left" Width="118.4"/>
-            <ComboBoxItem Content="yyyy-MM-dd"/>
-            <ComboBoxItem Content="ddMMyyyy"/>
-            <ComboBoxItem Content="dd-MM-yyyy"/>
-        </ComboBox>
         <RadioButton x:Name="RdoRegex" Content="" HorizontalAlignment="Left" Margin="10,302,0,0" VerticalAlignment="Top" Height="14" Width="19" GroupName="Option" TabIndex="24"/>
         <Label x:Name="LblRegex" Content="Regex" HorizontalAlignment="Left" Margin="7,296,0,0" VerticalAlignment="Top" Height="26" Width="51" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtRegex_Find" Height="22" Margin="10,298,7,0" VerticalAlignment="Top" Background="White" Grid.Column="2" TabIndex="25" Grid.ColumnSpan="2"/>
@@ -70,6 +64,7 @@
         <CheckBox x:Name="ChkDate_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="192,271,0,0" VerticalAlignment="Top" Click="ChkDate_Last_Click" TabIndex="23"/>
         <Button x:Name="BtnAbout" Content="About" Margin="0,0,37.4,9.6" HorizontalAlignment="Right" Width="70" TabIndex="31" Click="BtnAbout_Click" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
         <CheckBox x:Name="ChkBackup" Content="Backup" Grid.Column="2" HorizontalAlignment="Left" Margin="13,370,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtDateFormat" Height="24" Margin="285,242,10,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="6" Text="yyyyMMdd" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

@@ -617,8 +617,6 @@ namespace automatic_engine
                     // Date処理
                     else if ((bool)RdoDate.IsChecked)
                     {
-                        string dateFormat = ((ComboBoxItem)CbbDateFormat.SelectedValue).Content.ToString();
-
                         // 変換位置を設定する
                         int changeIndex = 0;
                         if ((bool)ChkDate_Last.IsChecked)
@@ -634,13 +632,13 @@ namespace automatic_engine
                         if (string.IsNullOrEmpty(DpDate.Text))
                         {
                             // システム日付で印刷する
-                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Now.ToString(dateFormat));
+                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Now.ToString(TxtDateFormat.Text));
                         }
                         // 日付を選択する場合
                         else
                         {
                             // 指定された日付で印刷する
-                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Parse(DpDate.Text).ToString(dateFormat));
+                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Parse(DpDate.Text).ToString(TxtDateFormat.Text));
                         }
                     }
                     // Regex処理
@@ -830,7 +828,7 @@ namespace automatic_engine
             try
             {
                 const string GITHUB_API = "https://api.github.com/repos/{0}/{1}/releases";
-                WebClient webClient = new WebClient();
+                WebClient webClient = new GitHubWebClient();
                 webClient.Headers.Add("User-Agent", "Unity web player");
                 Uri uri = new Uri(string.Format(GITHUB_API, "phamngocvinh", "automatic-engine"));
                 string releases = webClient.DownloadString(uri);
@@ -842,7 +840,7 @@ namespace automatic_engine
 
                 if (version.CompareTo(CURRENT_VERSION) > 0)
                 {
-                    var msg = "A new version of Automatic Engine is available\r\nNewest: {0}\r\nCurrent: {1}\r\nWould you like to upgrade it now ?";
+                    string msg = "A new version of Automatic Engine is available\r\nNewest: {0}\r\nCurrent: {1}\r\nWould you like to upgrade it now ?";
                     msg = string.Format(msg, version, CURRENT_VERSION);
                     DialogResult result = System.Windows.Forms.MessageBox.Show(msg, "Update App?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result.Equals(System.Windows.Forms.DialogResult.Yes))
@@ -852,12 +850,22 @@ namespace automatic_engine
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                // エラーメッセージを表示する
-                System.Windows.Forms.MessageBox.Show(
-                    string.Format("Internal error\r\nError message:{0}", e.Message),
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        /// <summary>
+        /// カスタマイズWebClient
+        /// </summary>
+        private class GitHubWebClient : WebClient
+        {
+            protected override WebRequest GetWebRequest(Uri uri)
+            {
+                WebRequest w = base.GetWebRequest(uri);
+                w.Timeout = 5000;
+                return w;
             }
         }
     }

@@ -9,7 +9,7 @@
     <Grid HorizontalAlignment="Left" Height="292" VerticalAlignment="Top" Width="454">
         <Image HorizontalAlignment="Left" Height="100" Margin="175,16,0,0" VerticalAlignment="Top" Width="100" Source="icon-192x192.png"/>
         <Label Content="Automatic Engine" HorizontalAlignment="Left" Margin="171,121,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="v1.0" HorizontalAlignment="Left" Margin="207,152,0,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic"/>
+        <Label x:Name="LblVersion" Content="version" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="184,152,188,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic" Width="82"/>
         <Label Content="Created by Pham Ngoc Vinh under GPL-v3.0 License" HorizontalAlignment="Left" Margin="81,182,0,0" VerticalAlignment="Top"/>
         <Label Content="Get the latest version at:" HorizontalAlignment="Left" Margin="84,248,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="226,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
