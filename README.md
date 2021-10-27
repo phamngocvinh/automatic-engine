@@ -43,7 +43,6 @@
       <a href="#beginner-getting-started">Getting Started</a>
       <ul>
         <li><a href="#installation">Installation</a></li>
-        <li><a href="#usage-example">Usage Example</a></li>
         <li><a href="#build">Build</a></li>
       </ul>
     </li>
