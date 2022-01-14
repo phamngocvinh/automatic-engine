@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="About" Height="323.691" Width="463.587" MinWidth="463.587" MinHeight="323.691" MaxWidth="463.587" MaxHeight="323.691">
+        Title="About" Height="323.691" Width="463.587" MinWidth="463.587" MinHeight="323.691" MaxWidth="463.587" MaxHeight="323.691" KeyDown="Window_KeyDown">
     <Grid HorizontalAlignment="Left" Height="292" VerticalAlignment="Top" Width="454">
         <Image HorizontalAlignment="Left" Height="100" Margin="175,16,0,0" VerticalAlignment="Top" Width="100" Source="icon-192x192.png"/>
         <Label Content="Automatic Engine" HorizontalAlignment="Left" Margin="171,121,0,0" VerticalAlignment="Top" FontWeight="Bold"/>

@@ -104,7 +104,7 @@ namespace automatic_engine
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private bool CheckRequire(CHECK_TYPE type)
+        private bool CheckInput(CHECK_TYPE type)
         {
             // パスチェック
             if (string.IsNullOrEmpty(TxtPath.Text))
@@ -272,6 +272,21 @@ namespace automatic_engine
                     // チェック結果がFALSEを戻す
                     return false;
                 }
+
+                if (!string.IsNullOrEmpty(TxtDate_Time.Text))
+                {
+                    if (!TimeSpan.TryParse(TxtDate_Time.Text, out _))
+                    {
+                        // エラーメッセージを表示する
+                        System.Windows.Forms.MessageBox.Show("Invalid time format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    if (!DateTime.TryParse(DpDate.Text + " " + TxtDate_Time.Text, out _))
+                    {
+                        // エラーメッセージを表示する
+                        System.Windows.Forms.MessageBox.Show("Invalid datetime format", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             // Regexの場合
             else if (type.Equals(CHECK_TYPE.REGEX))
@@ -383,15 +398,15 @@ namespace automatic_engine
             {
                 // 単項目チェック
                 if (((bool)RdoReplace.IsChecked
-                    && !CheckRequire(CHECK_TYPE.REPLACE_WITH))
+                    && !CheckInput(CHECK_TYPE.REPLACE_WITH))
                     || ((bool)RdoInsert.IsChecked
-                        && !CheckRequire(CHECK_TYPE.INSERT_INTO))
+                        && !CheckInput(CHECK_TYPE.INSERT_INTO))
                     || ((bool)RdoNumbering.IsChecked
-                       && !CheckRequire(CHECK_TYPE.NUMBERING))
+                       && !CheckInput(CHECK_TYPE.NUMBERING))
                     || ((bool)RdoDate.IsChecked
-                       && !CheckRequire(CHECK_TYPE.DATE))
+                       && !CheckInput(CHECK_TYPE.DATE))
                     || ((bool)RdoRegex.IsChecked
-                       && !CheckRequire(CHECK_TYPE.REGEX)))
+                       && !CheckInput(CHECK_TYPE.REGEX)))
                 {
                     return;
                 }
@@ -405,7 +420,8 @@ namespace automatic_engine
                             "Do you want to execute rename?",
                             "Confirm",
                             MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question)))
+                            MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button2)))
                     {
                         return;
                     }
@@ -531,17 +547,6 @@ namespace automatic_engine
                     }
                 }
 
-                // 実施前バックアップ
-                if ((bool)ChkBackup.IsChecked && !isPreview)
-                {
-                    var strBackupPath = Directory.CreateDirectory(TxtPath.Text).FullName + "\\" + "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss");
-                    Directory.CreateDirectory(strBackupPath);
-                    foreach (FileInfo info in fileInfos)
-                    {
-                        File.Copy(info.FullName, strBackupPath + "\\" + info.Name);
-                    }
-                }
-
                 // すべてファイルを繰返す
                 foreach (FileInfo info in fileInfos)
                 {
@@ -631,14 +636,32 @@ namespace automatic_engine
                         // 日付を選択しない場合
                         if (string.IsNullOrEmpty(DpDate.Text))
                         {
-                            // システム日付で印刷する
-                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Now.ToString(TxtDateFormat.Text));
+                            if (string.IsNullOrEmpty(TxtDate_Time.Text))
+                            {
+                                // システム日付で印刷する
+                                strChangeName = strOriginName.Insert(changeIndex, DateTime.Now.ToString(TxtDateFormat.Text));
+                            }
+                            else
+                            {
+                                DateTime dateTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd") + " " + TxtDate_Time.Text);
+                                strChangeName = strOriginName.Insert(changeIndex, dateTime.ToString(TxtDateFormat.Text));
+                            }
+
                         }
                         // 日付を選択する場合
                         else
                         {
-                            // 指定された日付で印刷する
-                            strChangeName = strOriginName.Insert(changeIndex, DateTime.Parse(DpDate.Text).ToString(TxtDateFormat.Text));
+                            if (string.IsNullOrEmpty(TxtDate_Time.Text))
+                            {
+                                // 指定された日付で印刷する
+                                strChangeName = strOriginName.Insert(changeIndex, DateTime.Parse(DpDate.Text).ToString(TxtDateFormat.Text));
+                            }
+                            else
+                            {
+                                // 指定された日付で印刷する
+                                DateTime date = DateTime.Parse(DpDate.Text + " " + TxtDate_Time.Text);
+                                strChangeName = strOriginName.Insert(changeIndex, date.ToString(TxtDateFormat.Text));
+                            }
                         }
                     }
                     // Regex処理
@@ -661,6 +684,17 @@ namespace automatic_engine
 
                         // 処理対象数をカウントアップする
                         executedFileCount++;
+                    }
+                }
+
+                // 実施前バックアップ
+                if ((bool)ChkBackup.IsChecked && !isPreview && executedFileCount > 0)
+                {
+                    var strBackupPath = Directory.CreateDirectory(TxtPath.Text).FullName + "\\" + "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                    Directory.CreateDirectory(strBackupPath);
+                    foreach (FileInfo info in fileInfos)
+                    {
+                        File.Copy(info.FullName, strBackupPath + "\\" + info.Name);
                     }
                 }
 

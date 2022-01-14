@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace automatic_engine
 {
@@ -43,6 +44,17 @@ namespace automatic_engine
         /// <param name="e"></param>
         private void BtnExecute_Click(object sender, RoutedEventArgs e)
         {
+            // 確認ダイアログを表示する
+            if (System.Windows.Forms.DialogResult.No.Equals(
+                System.Windows.Forms.MessageBox.Show(
+                    "Do you want to execute rename?",
+                    "Confirm",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2)))
+            {
+                return;
+            }
             // 実行フラグをTRUEになる
             isExecute = true;
             Close();
@@ -69,6 +81,11 @@ namespace automatic_engine
             // 変更前と変更後の表示を移動します
             TxtBefore.ScrollToVerticalOffset(e.VerticalOffset);
             TxtAfter.ScrollToVerticalOffset(e.VerticalOffset);
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            Close();
         }
     }
 }

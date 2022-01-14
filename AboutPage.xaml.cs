@@ -33,5 +33,10 @@ namespace automatic_engine
             _ = Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
             e.Handled = true;
         }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            Close();
+        }
     }
 }
