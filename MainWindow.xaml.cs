@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,10 +45,11 @@ namespace automatic_engine
         /// サイズで順番
         /// </summary>
         private readonly string SORTBY_SIZE = "Size";
+
         /// <summary>
-        /// バージョン
+        /// Current Software Version
         /// </summary>
-        private readonly Version CURRENT_VERSION = new Version("1.1.0");
+        private readonly Version currentVersion;
 
         /// <summary>
         /// コンストラクタ
@@ -54,7 +57,19 @@ namespace automatic_engine
         public MainWindow()
         {
             InitializeComponent();
+
+            // Get current software version
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            currentVersion = new Version(fileVersionInfo.ProductVersion);
+
+            // Set title
+            Title = "Automatic Engine v" + currentVersion;
+
+            // Set focus to Path textbox
             TxtPath.Focus();
+
+            // Check for update
             CheckVersion();
         }
 
@@ -867,19 +882,31 @@ namespace automatic_engine
                 Uri uri = new Uri(string.Format(GITHUB_API, "phamngocvinh", "automatic-engine"));
                 string releases = webClient.DownloadString(uri);
 
+                // Get newest version number
                 string pattern = @"v(\d+.\d+.\d+)";
                 Regex rg = new Regex(pattern);
                 MatchCollection matchedAuthors = rg.Matches(releases);
                 Version version = new Version(matchedAuthors[0].Groups[1].Value);
 
-                if (version.CompareTo(CURRENT_VERSION) > 0)
+                // Get newest version changes log
+                pattern = "body\\\":\\\"(.*?)\\\"";
+                rg = new Regex(pattern);
+                matchedAuthors = rg.Matches(releases);
+                var changesLog = matchedAuthors[0].Groups[1].Value;
+                changesLog = changesLog.Replace("\\r\\n", "{0}");
+
+                // If newest version newer than current version
+                if (version.CompareTo(currentVersion) > 0)
                 {
-                    string msg = "A new version of Automatic Engine is available\r\nNewest: {0}\r\nCurrent: {1}\r\nWould you like to upgrade it now ?";
-                    msg = string.Format(msg, version, CURRENT_VERSION);
+                    // Show update dialog
+                    string msg = "A new version of Automatic Engine is available\r\n・Current: {0}\r\n・New: {1}\r\n\r\nChanges log:\r\n{2}\r\n\r\nWould you like to upgrade it now ?";
+                    msg = string.Format(msg, currentVersion, version, string.Format(changesLog, Environment.NewLine));
                     DialogResult result = System.Windows.Forms.MessageBox.Show(msg, "Update App?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // If user click yes then open project link and shutdown program
                     if (result.Equals(System.Windows.Forms.DialogResult.Yes))
                     {
-                        System.Diagnostics.Process.Start("https://github.com/phamngocvinh/automatic-engine/releases/latest");
+                        Process.Start("https://github.com/phamngocvinh/automatic-engine/releases/latest");
                         System.Windows.Application.Current.Shutdown();
                     }
                 }
@@ -898,7 +925,7 @@ namespace automatic_engine
             protected override WebRequest GetWebRequest(Uri uri)
             {
                 WebRequest w = base.GetWebRequest(uri);
-                w.Timeout = 5000;
+                w.Timeout = 3000;
                 return w;
             }
         }
