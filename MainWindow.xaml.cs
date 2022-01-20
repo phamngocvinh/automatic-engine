@@ -481,8 +481,23 @@ namespace automatic_engine
                         shortestNameLength = info.Name.Length;
                     }
                 }
+                if ((bool)RdoInsert.IsChecked)
+                {
+                    if (!(bool)ChkInsertInto_Last.IsChecked && int.Parse(TxtInsertInto_Index.Text) > shortestNameLength)
+                    {
+                        // エラーメッセージを表示する
+                        System.Windows.Forms.MessageBox.Show(
+                            string.Format("Invalid index\r\nIndex larger than shortest Filename: {0}", shortestNameLength),
+                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                if ((bool)RdoNumbering.IsChecked)
+                        // エラーコントロールをフォーカスする
+                        TxtInsertInto_Index.Focus();
+
+                        // 処理停止
+                        return;
+                    }
+                }
+                else if ((bool)RdoNumbering.IsChecked)
                 {
                     if ((bool)RdoNumbering_Decrease.IsChecked
                         && numbering_from < fileInfos.Length)
