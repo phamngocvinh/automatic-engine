@@ -975,5 +975,15 @@ namespace automatic_engine
                 return w;
             }
         }
+
+        /// <summary>
+        /// ヘルプページを開く
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki/Features");
+        }
     }
 }
