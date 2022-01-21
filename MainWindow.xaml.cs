@@ -445,286 +445,313 @@ namespace automatic_engine
                 // 指定パスを取得する
                 var strPath = TxtPath.Text;
 
-                // フォルダー情報を取得
-                var directoryInfo = new DirectoryInfo(strPath);
-
-                // フォルダーにすべてファイルの情報を取得する
-                var fileInfos = directoryInfo.GetFiles();
-
                 // 変更前ファイル名一覧
                 var listOriginalName = new List<string>();
 
                 // 変更後ファイル名一覧
                 var listChangeName = new List<string>();
 
+                // 変更前ファイルフル名一覧
+                var listOriginalNameWithPath = new List<string>();
+
+                // 変更後ファイルフル名一覧
+                var listChangeNameWithPath = new List<string>();
+
                 // 実行ファイル数
                 var executedFileCount = 0;
 
-                // Numberingモードの場合
-                int numbering_at = 0;
-                int numbering_from = 0;
-                if ((bool)RdoNumbering.IsChecked)
-                {
-                    if (!(bool)ChkNumbering_Last.IsChecked)
-                    {
-                        numbering_at = int.Parse(TxtNumbering_Index.Text);
-                    }
-                    numbering_from = int.Parse(TxtNumbering_From.Text);
-                }
+                // フォルダー情報を取得
+                var directoryInfo = new DirectoryInfo(strPath);
 
-                // 整合性チェック
-                int shortestNameLength = int.MaxValue;
-                foreach (FileInfo info in fileInfos)
-                {
-                    if (shortestNameLength > info.Name.Length)
-                    {
-                        shortestNameLength = info.Name.Length;
-                    }
-                }
-                if ((bool)RdoInsert.IsChecked)
-                {
-                    if (!(bool)ChkInsertInto_Last.IsChecked && int.Parse(TxtInsertInto_Index.Text) > shortestNameLength)
-                    {
-                        // エラーメッセージを表示する
-                        System.Windows.Forms.MessageBox.Show(
-                            string.Format("Invalid index\r\nIndex larger than shortest Filename: {0}", shortestNameLength),
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        // エラーコントロールをフォーカスする
-                        TxtInsertInto_Index.Focus();
-
-                        // 処理停止
-                        return;
-                    }
-                }
-                else if ((bool)RdoNumbering.IsChecked)
-                {
-                    if ((bool)RdoNumbering_Decrease.IsChecked
-                        && numbering_from < fileInfos.Length)
-                    {
-                        // エラーメッセージを表示する
-                        System.Windows.Forms.MessageBox.Show(
-                            string.Format("Invalid decrease number\r\nDecrease number smaller than total num of files: {0}", fileInfos.Length),
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        // エラーコントロールをフォーカスする
-                        TxtNumbering_From.Focus();
-
-                        // 処理停止
-                        return;
-                    }
-                    else if (!(bool)ChkNumbering_Last.IsChecked && int.Parse(TxtNumbering_Index.Text) > shortestNameLength)
-                    {
-                        // エラーメッセージを表示する
-                        System.Windows.Forms.MessageBox.Show(
-                            string.Format("Invalid index\r\nIndex larger than shortest Filename: {0}", shortestNameLength),
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        // エラーコントロールをフォーカスする
-                        TxtNumbering_Index.Focus();
-
-                        // 処理停止
-                        return;
-                    }
-                }
-                else if ((bool)RdoDate.IsChecked)
-                {
-                    if (!(bool)ChkDate_Last.IsChecked && int.Parse(TxtDate_Index.Text) > shortestNameLength)
-                    {
-                        // エラーメッセージを表示する
-                        System.Windows.Forms.MessageBox.Show(
-                            string.Format("Invalid index (Index larger than shortest Filename: {0})", shortestNameLength),
-                            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        // エラーコントロールをフォーカスする
-                        TxtDate_Index.Focus();
-
-                        // 処理停止
-                        return;
-                    }
-                }
-
-                // 順番処理
-                if ((bool)ChkNumbering_SortBy.IsChecked)
-                {
-                    string selectedValue = ((ComboBoxItem)CbbSortBy.SelectedValue).Content.ToString();
-
-                    // 名前で順番する
-                    if (SORTBY_NAME.Equals(selectedValue))
-                    {
-                        fileInfos = fileInfos.OrderBy(v => v.Name).ToArray();
-                    }
-                    // 編集日で順番する
-                    else if (SORTBY_MODIFIED.Equals(selectedValue))
-                    {
-                        fileInfos = fileInfos.OrderBy(v => v.LastWriteTime).ToArray();
-                    }
-                    // 作成日で順番する
-                    else if (SORTBY_CREATED.Equals(selectedValue))
-                    {
-                        fileInfos = fileInfos.OrderBy(v => v.CreationTime).ToArray();
-                    }
-                    // サイズで順番する
-                    else if (SORTBY_SIZE.Equals(selectedValue))
-                    {
-                        fileInfos = fileInfos.OrderBy(v => v.Length).ToArray();
-                    }
-
-                    // 順番を反対する
-                    if ((bool)ChkNumbering_Reverse.IsChecked)
-                    {
-                        fileInfos = fileInfos.Reverse().ToArray();
-                    }
-                }
-
-                // すべてファイルを繰返す
-                foreach (FileInfo info in fileInfos)
-                {
-                    // 変更前ファイル名
-                    var strOriginName = info.Name;
-
-                    // 変更後ファイル名
-                    var strChangeName = strOriginName;
-
-                    // Replace-With処理
-                    if ((bool)RdoReplace.IsChecked)
-                    {
-                        // ファイル名にReplace文字が含まない場合、処理対象以外になる
-                        if (!strOriginName.Contains(TxtReplace.Text))
-                        {
-                            // 次のレコードを移動する
-                            continue;
-                        }
-
-                        strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
-                    }
-                    // Insert-Into処理
-                    else if ((bool)RdoInsert.IsChecked)
-                    {
-                        // 最後位置チェックボックスをチェックする場合
-                        if ((bool)ChkInsertInto_Last.IsChecked)
-                        {
-                            strChangeName = strOriginName.Insert(strOriginName.IndexOf(info.Extension), TxtInsertInto_Word.Text);
-                        }
-                        else
-                        {
-                            strChangeName = strOriginName.Insert(int.Parse(TxtInsertInto_Index.Text), TxtInsertInto_Word.Text);
-                        }
-                    }
-                    // Numbering処理
-                    else if ((bool)RdoNumbering.IsChecked)
-                    {
-                        // 変換位置を設定する
-                        int changeIndex = 0;
-                        if ((bool)ChkNumbering_Last.IsChecked)
-                        {
-                            changeIndex = strOriginName.IndexOf(info.Extension);
-                        }
-                        else
-                        {
-                            changeIndex = numbering_at;
-                        }
-
-                        // フォーマットチェックする時
-                        if ((bool)ChkNumbering_Format.IsChecked)
-                        {
-                            // 変数をフォーマットする
-                            int padNum = fileInfos.Length.ToString().Length;
-
-                            strChangeName = strOriginName.Insert(changeIndex, numbering_from.ToString().PadLeft(padNum, '0'));
-                        }
-                        else
-                        {
-                            strChangeName = strOriginName.Insert(changeIndex, numbering_from.ToString());
-                        }
-
-                        // 昇順
-                        if ((bool)RdoNumbering_Increase.IsChecked)
-                        {
-                            numbering_from++;
-                        }
-                        // 降順
-                        else
-                        {
-                            numbering_from--;
-                        }
-                    }
-                    // Date処理
-                    else if ((bool)RdoDate.IsChecked)
-                    {
-                        // 変換位置を設定する
-                        int changeIndex = 0;
-                        if ((bool)ChkDate_Last.IsChecked)
-                        {
-                            changeIndex = strOriginName.IndexOf(info.Extension);
-                        }
-                        else
-                        {
-                            changeIndex = int.Parse(TxtDate_Index.Text);
-                        }
-
-                        // 日付を選択しない場合
-                        if (string.IsNullOrEmpty(DpDate.Text))
-                        {
-                            if (string.IsNullOrEmpty(TxtDate_Time.Text))
-                            {
-                                // システム日付で印刷する
-                                strChangeName = strOriginName.Insert(changeIndex, DateTime.Now.ToString(TxtDateFormat.Text));
-                            }
-                            else
-                            {
-                                DateTime dateTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd") + " " + TxtDate_Time.Text);
-                                strChangeName = strOriginName.Insert(changeIndex, dateTime.ToString(TxtDateFormat.Text));
-                            }
-
-                        }
-                        // 日付を選択する場合
-                        else
-                        {
-                            if (string.IsNullOrEmpty(TxtDate_Time.Text))
-                            {
-                                // 指定された日付で印刷する
-                                strChangeName = strOriginName.Insert(changeIndex, DateTime.Parse(DpDate.Text).ToString(TxtDateFormat.Text));
-                            }
-                            else
-                            {
-                                // 指定された日付で印刷する
-                                DateTime date = DateTime.Parse(DpDate.Text + " " + TxtDate_Time.Text);
-                                strChangeName = strOriginName.Insert(changeIndex, date.ToString(TxtDateFormat.Text));
-                            }
-                        }
-                    }
-                    // Regex処理
-                    else if ((bool)RdoRegex.IsChecked)
-                    {
-                        strChangeName = Regex.Replace(strOriginName, TxtRegex_Find.Text, TxtRegex_Replace.Text);
-                    }
-
-                    // 変更前ファイル名一覧に変更前ファイル名を追加する
-                    listOriginalName.Add(strOriginName);
-
-                    // 変更後ファイル名一覧に変更後ファイル名を追加する
-                    listChangeName.Add(strChangeName);
-
-                    // 実行モードの場合
-                    if (!isPreview)
-                    {
-                        // 名の変更を実行する
-                        File.Move(info.FullName, string.Concat(info.DirectoryName, System.IO.Path.DirectorySeparatorChar, strChangeName));
-
-                        // 処理対象数をカウントアップする
-                        executedFileCount++;
-                    }
-                }
+                var directoryInfoList = directoryInfo.GetDirectories("*", SearchOption.AllDirectories).ToList();
+                directoryInfoList.Add(directoryInfo);
 
                 // 実施前バックアップ
-                if ((bool)ChkBackup.IsChecked && !isPreview && executedFileCount > 0)
+                if ((bool)ChkBackup.IsChecked && !isPreview)
                 {
                     var strBackupPath = Directory.CreateDirectory(TxtPath.Text).FullName + "\\" + "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                     Directory.CreateDirectory(strBackupPath);
+
+                    //Now Create all of the directories
+                    foreach (string dirPath in Directory.GetDirectories(TxtPath.Text, "*", SearchOption.AllDirectories))
+                    {
+                        if (dirPath.Equals(strBackupPath))
+                        {
+                            continue;
+                        }
+                        Directory.CreateDirectory(dirPath.Replace(TxtPath.Text, strBackupPath));
+                    }
+
+                    //Copy all the files & Replaces any files with the same name
+                    foreach (string newPath in Directory.GetFiles(TxtPath.Text, "*.*", SearchOption.AllDirectories))
+                    {
+                        File.Copy(newPath, newPath.Replace(TxtPath.Text, strBackupPath), true);
+                    }
+                }
+
+                // 指定されたフォルダの中にすべてのファイルかつフォルダをループする
+                foreach (DirectoryInfo dictInfo in directoryInfoList)
+                {
+                    // フォルダーにすべてファイルの情報を取得する
+                    var fileInfos = dictInfo.GetFiles();
+
+                    // Numberingモードの場合
+                    int numbering_at = 0;
+                    int numbering_from = 0;
+                    if ((bool)RdoNumbering.IsChecked)
+                    {
+                        if (!(bool)ChkNumbering_Last.IsChecked)
+                        {
+                            numbering_at = int.Parse(TxtNumbering_Index.Text);
+                        }
+                        numbering_from = int.Parse(TxtNumbering_From.Text);
+                    }
+
+                    // 整合性チェック
+                    int shortestNameLength = int.MaxValue;
                     foreach (FileInfo info in fileInfos)
                     {
-                        File.Copy(info.FullName, strBackupPath + "\\" + info.Name);
+                        if (shortestNameLength > info.Name.Length)
+                        {
+                            shortestNameLength = info.Name.Length;
+                        }
+                    }
+                    if ((bool)RdoInsert.IsChecked)
+                    {
+                        if (!(bool)ChkInsertInto_Last.IsChecked && int.Parse(TxtInsertInto_Index.Text) > shortestNameLength)
+                        {
+                            // エラーメッセージを表示する
+                            System.Windows.Forms.MessageBox.Show(
+                                string.Format("Invalid index\r\nIndex larger than shortest Filename: {0}", shortestNameLength),
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            // エラーコントロールをフォーカスする
+                            TxtInsertInto_Index.Focus();
+
+                            // 処理停止
+                            return;
+                        }
+                    }
+                    else if ((bool)RdoNumbering.IsChecked)
+                    {
+                        if ((bool)RdoNumbering_Decrease.IsChecked
+                            && numbering_from < fileInfos.Length)
+                        {
+                            // エラーメッセージを表示する
+                            System.Windows.Forms.MessageBox.Show(
+                                string.Format("Invalid decrease number\r\nDecrease number smaller than total num of files: {0}", fileInfos.Length),
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            // エラーコントロールをフォーカスする
+                            TxtNumbering_From.Focus();
+
+                            // 処理停止
+                            return;
+                        }
+                        else if (!(bool)ChkNumbering_Last.IsChecked && int.Parse(TxtNumbering_Index.Text) > shortestNameLength)
+                        {
+                            // エラーメッセージを表示する
+                            System.Windows.Forms.MessageBox.Show(
+                                string.Format("Invalid index\r\nIndex larger than shortest Filename: {0}", shortestNameLength),
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            // エラーコントロールをフォーカスする
+                            TxtNumbering_Index.Focus();
+
+                            // 処理停止
+                            return;
+                        }
+                    }
+                    else if ((bool)RdoDate.IsChecked)
+                    {
+                        if (!(bool)ChkDate_Last.IsChecked && int.Parse(TxtDate_Index.Text) > shortestNameLength)
+                        {
+                            // エラーメッセージを表示する
+                            System.Windows.Forms.MessageBox.Show(
+                                string.Format("Invalid index (Index larger than shortest Filename: {0})", shortestNameLength),
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            // エラーコントロールをフォーカスする
+                            TxtDate_Index.Focus();
+
+                            // 処理停止
+                            return;
+                        }
+                    }
+
+                    // 順番処理
+                    if ((bool)ChkNumbering_SortBy.IsChecked)
+                    {
+                        string selectedValue = ((ComboBoxItem)CbbSortBy.SelectedValue).Content.ToString();
+
+                        // 名前で順番する
+                        if (SORTBY_NAME.Equals(selectedValue))
+                        {
+                            fileInfos = fileInfos.OrderBy(v => v.Name).ToArray();
+                        }
+                        // 編集日で順番する
+                        else if (SORTBY_MODIFIED.Equals(selectedValue))
+                        {
+                            fileInfos = fileInfos.OrderBy(v => v.LastWriteTime).ToArray();
+                        }
+                        // 作成日で順番する
+                        else if (SORTBY_CREATED.Equals(selectedValue))
+                        {
+                            fileInfos = fileInfos.OrderBy(v => v.CreationTime).ToArray();
+                        }
+                        // サイズで順番する
+                        else if (SORTBY_SIZE.Equals(selectedValue))
+                        {
+                            fileInfos = fileInfos.OrderBy(v => v.Length).ToArray();
+                        }
+
+                        // 順番を反対する
+                        if ((bool)ChkNumbering_Reverse.IsChecked)
+                        {
+                            fileInfos = fileInfos.Reverse().ToArray();
+                        }
+                    }
+
+                    // すべてファイルを繰返す
+                    foreach (FileInfo info in fileInfos)
+                    {
+                        // 変更前ファイル名
+                        var strOriginName = info.Name;
+
+                        // 変更後ファイル名
+                        var strChangeName = strOriginName;
+
+                        // Replace-With処理
+                        if ((bool)RdoReplace.IsChecked)
+                        {
+                            // ファイル名にReplace文字が含まない場合、処理対象以外になる
+                            if (!strOriginName.Contains(TxtReplace.Text))
+                            {
+                                // 次のレコードを移動する
+                                continue;
+                            }
+
+                            strChangeName = strOriginName.Replace(TxtReplace.Text, TxtWith.Text);
+                        }
+                        // Insert-Into処理
+                        else if ((bool)RdoInsert.IsChecked)
+                        {
+                            // 最後位置チェックボックスをチェックする場合
+                            if ((bool)ChkInsertInto_Last.IsChecked)
+                            {
+                                strChangeName = strOriginName.Insert(strOriginName.IndexOf(info.Extension), TxtInsertInto_Word.Text);
+                            }
+                            else
+                            {
+                                strChangeName = strOriginName.Insert(int.Parse(TxtInsertInto_Index.Text), TxtInsertInto_Word.Text);
+                            }
+                        }
+                        // Numbering処理
+                        else if ((bool)RdoNumbering.IsChecked)
+                        {
+                            // 変換位置を設定する
+                            int changeIndex = 0;
+                            if ((bool)ChkNumbering_Last.IsChecked)
+                            {
+                                changeIndex = strOriginName.IndexOf(info.Extension);
+                            }
+                            else
+                            {
+                                changeIndex = numbering_at;
+                            }
+
+                            // フォーマットチェックする時
+                            if ((bool)ChkNumbering_Format.IsChecked)
+                            {
+                                // 変数をフォーマットする
+                                int padNum = fileInfos.Length.ToString().Length;
+
+                                strChangeName = strOriginName.Insert(changeIndex, numbering_from.ToString().PadLeft(padNum, '0'));
+                            }
+                            else
+                            {
+                                strChangeName = strOriginName.Insert(changeIndex, numbering_from.ToString());
+                            }
+
+                            // 昇順
+                            if ((bool)RdoNumbering_Increase.IsChecked)
+                            {
+                                numbering_from++;
+                            }
+                            // 降順
+                            else
+                            {
+                                numbering_from--;
+                            }
+                        }
+                        // Date処理
+                        else if ((bool)RdoDate.IsChecked)
+                        {
+                            // 変換位置を設定する
+                            int changeIndex = 0;
+                            if ((bool)ChkDate_Last.IsChecked)
+                            {
+                                changeIndex = strOriginName.IndexOf(info.Extension);
+                            }
+                            else
+                            {
+                                changeIndex = int.Parse(TxtDate_Index.Text);
+                            }
+
+                            // 日付を選択しない場合
+                            if (string.IsNullOrEmpty(DpDate.Text))
+                            {
+                                if (string.IsNullOrEmpty(TxtDate_Time.Text))
+                                {
+                                    // システム日付で印刷する
+                                    strChangeName = strOriginName.Insert(changeIndex, DateTime.Now.ToString(TxtDateFormat.Text));
+                                }
+                                else
+                                {
+                                    DateTime dateTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd") + " " + TxtDate_Time.Text);
+                                    strChangeName = strOriginName.Insert(changeIndex, dateTime.ToString(TxtDateFormat.Text));
+                                }
+
+                            }
+                            // 日付を選択する場合
+                            else
+                            {
+                                if (string.IsNullOrEmpty(TxtDate_Time.Text))
+                                {
+                                    // 指定された日付で印刷する
+                                    strChangeName = strOriginName.Insert(changeIndex, DateTime.Parse(DpDate.Text).ToString(TxtDateFormat.Text));
+                                }
+                                else
+                                {
+                                    // 指定された日付で印刷する
+                                    DateTime date = DateTime.Parse(DpDate.Text + " " + TxtDate_Time.Text);
+                                    strChangeName = strOriginName.Insert(changeIndex, date.ToString(TxtDateFormat.Text));
+                                }
+                            }
+                        }
+                        // Regex処理
+                        else if ((bool)RdoRegex.IsChecked)
+                        {
+                            strChangeName = Regex.Replace(strOriginName, TxtRegex_Find.Text, TxtRegex_Replace.Text);
+                        }
+
+                        // 変更前ファイル名一覧に変更前ファイル名を追加する
+                        listOriginalName.Add(strOriginName);
+                        listOriginalNameWithPath.Add(info.FullName);
+
+                        // 変更後ファイル名一覧に変更後ファイル名を追加する
+                        listChangeName.Add(strChangeName);
+                        listChangeNameWithPath.Add(info.Directory.FullName + "\\" + strChangeName);
+
+                        // 実行モードの場合
+                        if (!isPreview)
+                        {
+                            // 名の変更を実行する
+                            File.Move(info.FullName, string.Concat(info.DirectoryName, System.IO.Path.DirectorySeparatorChar, strChangeName));
+
+                            // 処理対象数をカウントアップする
+                            executedFileCount++;
+                        }
                     }
                 }
 
@@ -732,7 +759,11 @@ namespace automatic_engine
                 if (isPreview)
                 {
                     // プレビュー画面を作成する
-                    var previewWindow = new PreviewWindow(listOriginal: listOriginalName, listChanged: listChangeName)
+                    var previewWindow = new PreviewWindow(
+                        listOriginal: listOriginalName,
+                        listChanged: listChangeName,
+                        listOriginalFull: listOriginalNameWithPath,
+                        listChangedFull: listChangeNameWithPath)
                     {
                         Owner = this
                     };

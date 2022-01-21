@@ -16,22 +16,49 @@ namespace automatic_engine
         public static bool isExecute = false;
 
         /// <summary>
+        /// 変更前一覧
+        /// </summary>
+        readonly List<string> listOriginal = new List<string>();
+
+        /// <summary>
+        /// 変更後一覧
+        /// </summary>
+        readonly List<string> listChanged = new List<string>();
+
+        /// <summary>
+        /// 変更前フル一覧
+        /// </summary>
+        readonly List<string> listOriginalFull = new List<string>();
+
+        /// <summary>
+        /// 変更後フル一覧
+        /// </summary>
+        readonly List<string> listChangedFull = new List<string>();
+
+        /// <summary>
         /// コンストラクタ
         /// </summary>
         /// <param name="listOriginal">変更前一覧</param>
         /// <param name="listChanged">変更後一覧</param>
-        public PreviewWindow(List<string> listOriginal, List<string> listChanged)
+        /// <param name="listOriginalFull">変更前フル一覧</param>
+        /// <param name="listChangedFull">変更後フル一覧</param>
+        public PreviewWindow(List<string> listOriginal, List<string> listChanged, List<string> listOriginalFull, List<string> listChangedFull)
         {
             InitializeComponent();
 
+            this.listOriginal= listOriginal;
+            this.listChanged = listChanged;
+            this.listOriginalFull = listOriginalFull;
+            this.listChangedFull = listChangedFull;
+
             // 変更前を表示する
-            foreach (string name in listOriginal)
+            foreach (string name in listOriginalFull)
             {
                 TxtBefore.Text += string.Concat(name, Environment.NewLine);
             }
 
             // 変更後を表示する
-            foreach (string name in listChanged)
+            foreach (string name in listChangedFull)
             {
                 TxtAfter.Text += string.Concat(name, Environment.NewLine);
             }
@@ -86,6 +113,41 @@ namespace automatic_engine
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             Close();
+        }
+
+        private void ChkFullpath_Click(object sender, RoutedEventArgs e)
+        {
+            TxtBefore.Clear();
+            TxtAfter.Clear();
+
+            if ((bool)ChkFullpath.IsChecked)
+            {
+                // 変更前を表示する
+                foreach (string name in listOriginalFull)
+                {
+                    TxtBefore.Text += string.Concat(name, Environment.NewLine);
+                }
+
+                // 変更後を表示する
+                foreach (string name in listChangedFull)
+                {
+                    TxtAfter.Text += string.Concat(name, Environment.NewLine);
+                }
+            }
+            else
+            {
+                // 変更前を表示する
+                foreach (string name in listOriginal)
+                {
+                    TxtBefore.Text += string.Concat(name, Environment.NewLine);
+                }
+
+                // 変更後を表示する
+                foreach (string name in listChanged)
+                {
+                    TxtAfter.Text += string.Concat(name, Environment.NewLine);
+                }
+            }
         }
     }
 }
