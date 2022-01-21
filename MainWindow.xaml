@@ -39,7 +39,20 @@
         <Label x:Name="LblNumbering_From" Content="From" HorizontalAlignment="Left" Margin="80,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <RadioButton x:Name="RdoNumbering_Increase" Content="Increase" HorizontalAlignment="Left" Margin="164,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" IsChecked="True" GroupName="Numbering" TabIndex="404"/>
         <RadioButton x:Name="RdoNumbering_Decrease" Content="Decrease" HorizontalAlignment="Left" Margin="231,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" GroupName="Numbering" TabIndex="405"/>
-        <CheckBox x:Name="ChkNumbering_Format" Content="Format" Grid.Column="2" HorizontalAlignment="Left" Margin="40,202,0,0" VerticalAlignment="Top" TabIndex="407" ToolTip="Add zero to one digit numer if number of files is large than 10"/>
+        <CheckBox x:Name="ChkNumbering_Format" Content="Format" Grid.Column="2" HorizontalAlignment="Left" Margin="40,202,0,0" VerticalAlignment="Top" TabIndex="407" ToolTip="Add zero to one digit numer if number of files is large than 10&#x0a;
+Format:&#x0a;
+11&#x0a;
+10&#x0a;
+09&#x0a;
+08&#x0a;
+07&#x0a;
+&#x0a;
+No format:&#x0a;
+11&#x0a;
+10&#x0a;
+9&#x0a;
+8&#x0a;
+7"/>
         <CheckBox x:Name="ChkNumbering_SortBy" Content="Sort by" Grid.Column="2" HorizontalAlignment="Left" Margin="117,202,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click" TabIndex="408"/>
         <ComboBox x:Name="CbbSortBy" Grid.Column="2" HorizontalAlignment="Left" Margin="178,198,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" IsEnabled="False" TabIndex="409">
             <ComboBoxItem Content="Name" HorizontalAlignment="Left" Width="118.4"/>
@@ -64,7 +77,13 @@
         <CheckBox x:Name="ChkDate_Last" Content="Last" Grid.Column="2" HorizontalAlignment="Left" Margin="192,271,0,0" VerticalAlignment="Top" Click="ChkDate_Last_Click" TabIndex="505" ToolTip="Insert into last position"/>
         <Button x:Name="BtnAbout" Content="About" Margin="0,0,37.4,9.6" HorizontalAlignment="Right" Width="70" TabIndex="1006" Click="BtnAbout_Click" Height="23" VerticalAlignment="Bottom" Grid.ColumnSpan="2" ToolTip="About page"/>
         <CheckBox x:Name="ChkBackup" Content="Backup" Grid.Column="2" HorizontalAlignment="Left" Margin="13,370,0,0" VerticalAlignment="Top" TabIndex="1001" ToolTip="If checked: will backup Path folder before excecution process"/>
-        <TextBox x:Name="TxtDateFormat" Height="24" Margin="285,242,10,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="506" Text="yyyyMMdd" Grid.ColumnSpan="2" Padding="0,1,0,0"/>
+        <TextBox x:Name="TxtDateFormat" Height="24" Margin="285,242,10,0" VerticalAlignment="Top" Grid.Column="2" TabIndex="506" Text="yyyyMMdd" Grid.ColumnSpan="2" Padding="0,1,0,0" ToolTip="Datetime format&#x0a;
+Year             yyyy&#x0a;
+Month         MM&#x0a;
+Day              dd&#x0a;
+Hour            hh&#x0a;
+Hour(24H)   HH&#x0a;
+Minute        mm"/>
         <Label x:Name="LblDate_Time" Content="Time" HorizontalAlignment="Left" Margin="13,265,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtDate_Time" Height="24" Margin="58,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" TabIndex="503" HorizontalAlignment="Left" Width="101" Padding="0,1,0,0" ToolTip="Input Time to insert"/>
 
