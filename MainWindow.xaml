@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
         Title="Automatic Engine" Height="439.124" Width="623.557" MinWidth="623.557" MinHeight="438.242" IsTabStop="False" MaxHeight="439.124">
-    <Grid ToolTip="Insert into last position">
+    <Grid ToolTip="">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="35.2"/>
             <ColumnDefinition Width="83.2"/>
@@ -39,7 +39,7 @@
         <Label x:Name="LblNumbering_From" Content="From" HorizontalAlignment="Left" Margin="80,166,0,0" VerticalAlignment="Top" Height="26" Grid.Column="2" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <RadioButton x:Name="RdoNumbering_Increase" Content="Increase" HorizontalAlignment="Left" Margin="164,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" IsChecked="True" GroupName="Numbering" TabIndex="404"/>
         <RadioButton x:Name="RdoNumbering_Decrease" Content="Decrease" HorizontalAlignment="Left" Margin="231,172,0,0" VerticalAlignment="Top" Height="14" Grid.Column="2" GroupName="Numbering" TabIndex="405"/>
-        <CheckBox x:Name="ChkNumbering_Format" Content="Format" Grid.Column="2" HorizontalAlignment="Left" Margin="40,202,0,0" VerticalAlignment="Top" TabIndex="407"/>
+        <CheckBox x:Name="ChkNumbering_Format" Content="Format" Grid.Column="2" HorizontalAlignment="Left" Margin="40,202,0,0" VerticalAlignment="Top" TabIndex="407" ToolTip="Add zero to one digit numer if number of files is large than 10"/>
         <CheckBox x:Name="ChkNumbering_SortBy" Content="Sort by" Grid.Column="2" HorizontalAlignment="Left" Margin="117,202,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click" TabIndex="408"/>
         <ComboBox x:Name="CbbSortBy" Grid.Column="2" HorizontalAlignment="Left" Margin="178,198,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" IsEnabled="False" TabIndex="409">
             <ComboBoxItem Content="Name" HorizontalAlignment="Left" Width="118.4"/>
