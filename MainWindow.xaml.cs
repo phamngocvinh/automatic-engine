@@ -983,7 +983,7 @@ namespace automatic_engine
         /// <param name="e"></param>
         private void BtnHelp_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki/Features");
+            System.Diagnostics.Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki");
         }
     }
 }
