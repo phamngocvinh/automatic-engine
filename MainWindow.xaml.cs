@@ -929,7 +929,7 @@ namespace automatic_engine
                 string releases = webClient.DownloadString(uri);
 
                 // Get newest version number
-                string pattern = @"v(\d+.\d+.\d+)";
+                string pattern = @"v(\d+\.*\d*\.*\d*)";
                 Regex rg = new Regex(pattern);
                 MatchCollection matchedAuthors = rg.Matches(releases);
                 Version version = new Version(matchedAuthors[0].Groups[1].Value);
@@ -983,7 +983,7 @@ namespace automatic_engine
         /// <param name="e"></param>
         private void BtnHelp_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki");
+            Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki");
         }
     }
 }
