@@ -463,7 +463,12 @@ namespace automatic_engine
                 // フォルダー情報を取得
                 var directoryInfo = new DirectoryInfo(strPath);
 
-                var directoryInfoList = directoryInfo.GetDirectories("*", SearchOption.AllDirectories).ToList();
+                var directoryInfoList = new List<DirectoryInfo>();
+
+                if ((bool)ChkRecursively.IsChecked)
+                {
+                    directoryInfoList = directoryInfo.GetDirectories("*", SearchOption.AllDirectories).ToList();
+                }
                 directoryInfoList.Add(directoryInfo);
 
                 // 実施前バックアップ
