@@ -37,7 +37,7 @@
         <Label x:Name="LblNumbering_From" Content="From" HorizontalAlignment="Left" Margin="200,190,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <RadioButton x:Name="RdoNumbering_Increase" Content="Increase" HorizontalAlignment="Left" Margin="282,196,0,0" VerticalAlignment="Top" Height="14" Grid.Column="1" IsChecked="True" GroupName="Numbering" TabIndex="404"/>
         <RadioButton x:Name="RdoNumbering_Decrease" Content="Decrease" HorizontalAlignment="Left" Margin="349,196,0,0" VerticalAlignment="Top" Height="14" Grid.Column="1" GroupName="Numbering" TabIndex="405"/>
-        <CheckBox x:Name="ChkNumbering_Format" Content="Format" Grid.Column="1" HorizontalAlignment="Left" Margin="133,226,0,0" VerticalAlignment="Top" TabIndex="407" />
+        <CheckBox x:Name="ChkNumbering_Format" Content="Format" Grid.Column="1" HorizontalAlignment="Left" Margin="133,226,0,0" VerticalAlignment="Top" TabIndex="407" Background="White" />
         <CheckBox x:Name="ChkNumbering_SortBy" Content="Sort by" Grid.Column="1" HorizontalAlignment="Left" Margin="200,226,0,0" VerticalAlignment="Top" Click="ChkNumbering_SortBy_Click" TabIndex="408"/>
         <ComboBox x:Name="CbbSortBy" Grid.Column="1" HorizontalAlignment="Left" Margin="263,223,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" IsEnabled="False" TabIndex="409">
             <ComboBoxItem Content="Name" HorizontalAlignment="Left" Width="118.4"/>
@@ -67,7 +67,7 @@
         <Label x:Name="LblDate_Time" Content="Time" HorizontalAlignment="Left" Margin="140,292,0,0" VerticalAlignment="Top" Height="26" Grid.Column="1" MouseLeftButtonUp="Label_MouseLeftButtonUp"/>
         <TextBox x:Name="TxtDate_Time" Height="24" Margin="185,293,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" TabIndex="503" HorizontalAlignment="Left" Width="101" Padding="0,1,0,0" />
         <CheckBox x:Name="ChkRecursively" Content="Recursively" Grid.Column="1" HorizontalAlignment="Left" Margin="133,42,0,0" VerticalAlignment="Top" Click="ChkInsertInto_Last_Click" TabIndex="103" HorizontalContentAlignment="Stretch" />
-        <ComboBox x:Name="comboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="160,417,0,0" VerticalAlignment="Top" Width="85" SelectedIndex="0" TabIndex="1008">
+        <ComboBox x:Name="CbbTheme" Grid.Column="1" HorizontalAlignment="Left" Margin="160,417,0,0" VerticalAlignment="Top" Width="85" TabIndex="1008" SelectionChanged="CbbTheme_SelectionChanged" SelectedValuePath="Content">
             <ComboBoxItem Content="Nord"/>
             <ComboBoxItem Content="White"/>
         </ComboBox>
