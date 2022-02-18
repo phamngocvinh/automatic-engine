@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="About" Height="323.691" Width="463.587" MinWidth="463.587" MinHeight="323.691" MaxWidth="463.587" MaxHeight="323.691" KeyDown="Window_KeyDown">
+        Title="About" Height="323.691" Width="463.587" MinWidth="463.587" MinHeight="323.691" MaxWidth="463.587" MaxHeight="323.691" KeyDown="Window_KeyDown" Background="#FF3B4252">
     <Grid HorizontalAlignment="Left" Height="292" VerticalAlignment="Top" Width="454">
-        <Image HorizontalAlignment="Left" Height="100" Margin="175,16,0,0" VerticalAlignment="Top" Width="100" Source="icon-192x192.png"/>
-        <Label Content="Automatic Engine" HorizontalAlignment="Left" Margin="171,121,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="LblVersion" Content="version" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="184,152,188,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic" Width="82"/>
-        <Label Content="Created by Pham Ngoc Vinh under GPL-v3.0 License" HorizontalAlignment="Left" Margin="81,182,0,0" VerticalAlignment="Top"/>
-        <Label Content="Get the latest version at:" HorizontalAlignment="Left" Margin="84,248,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="226,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Hyperlink NavigateUri="https://github.com/phamngocvinh/automatic-engine/releases/latest" RequestNavigate="Hyperlink_RequestNavigate">
+        <Image HorizontalAlignment="Left" Height="100" Margin="175,16,0,0" VerticalAlignment="Top" Width="100" Source="/icon-192x192.png"/>
+        <Label Content="Automatic Engine" HorizontalAlignment="Left" Margin="171,121,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFD1DBE5"/>
+        <Label x:Name="LblVersion" Content="version" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="184,152,188,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic" Width="82" Foreground="#FFD1DBE5"/>
+        <Label Content="Created by Pham Ngoc Vinh under GPL-v3.0 License" HorizontalAlignment="Left" Margin="81,182,0,0" VerticalAlignment="Top" Foreground="#FFD1DBE5"/>
+        <Label Content="Get the latest version at:" HorizontalAlignment="Left" Margin="84,248,0,0" VerticalAlignment="Top" Foreground="#FFD1DBE5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="226,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF5E81AC">
+            <Hyperlink NavigateUri="https://github.com/phamngocvinh/automatic-engine" RequestNavigate="Hyperlink_RequestNavigate">
                 Official GitHub Repository
             </Hyperlink>
         </TextBlock>
-        <Label Content="This software is free for everyone forever" HorizontalAlignment="Left" Margin="112,214,0,0" VerticalAlignment="Top"/>
+        <Label Content="This software is free for everyone forever" HorizontalAlignment="Left" Margin="112,214,0,0" VerticalAlignment="Top" Foreground="#FFD1DBE5"/>
     </Grid>
 </Window>
