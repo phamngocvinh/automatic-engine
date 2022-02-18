@@ -131,6 +131,7 @@ Project Link: [https://github.com/phamngocvinh/automatic-engine](https://github.
 
 * [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/)
 * [Windows Presentation Foundation](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/)
+* [Nord Theme Palettes](https://www.nordtheme.com)
 * [Shields.io](https://shields.io)
 
 <!-- MARKDOWN LINKS & IMAGES -->
