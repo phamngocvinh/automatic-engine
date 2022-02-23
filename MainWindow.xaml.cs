@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace automatic_engine
 {
@@ -989,6 +990,19 @@ namespace automatic_engine
         private void BtnHelp_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki");
+        }
+
+        /// <summary>
+        /// Drag move anywhere
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Window && e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
         }
     }
 }
