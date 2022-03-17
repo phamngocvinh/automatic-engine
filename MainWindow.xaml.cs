@@ -1006,7 +1006,7 @@ namespace automatic_engine
         /// <param name="e"></param>
         private void BtnHelp_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki");
+            Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki/Usage-Example");
         }
 
         /// <summary>
