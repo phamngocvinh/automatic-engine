@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:automatic_engine"
         mc:Ignorable="d"
-        Title="Automatic Engine" Height="490" Width="650" IsTabStop="False" Background="#FF3B4252" MinWidth="650" MinHeight="490" MaxHeight="490" MouseDown="Window_MouseDown">
+        Title="Automatic Engine" Height="490" Width="650" IsTabStop="False" Background="#FF3B4252" MinWidth="650" MinHeight="490" MaxHeight="490">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

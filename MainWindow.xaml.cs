@@ -461,7 +461,7 @@ namespace automatic_engine
                 }
 
                 // 指定パスを取得する
-                var strPath = TxtPath.Text;
+                var strPath = TxtPath.Text.Trim(new[] { '\\' });
 
                 // 変更前ファイル名一覧
                 var listOriginalName = new List<string>();
@@ -492,23 +492,23 @@ namespace automatic_engine
                 // 実施前バックアップ
                 if ((bool)ChkBackup.IsChecked && !isPreview)
                 {
-                    var strBackupPath = Directory.CreateDirectory(TxtPath.Text).FullName + "\\" + "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+                    var strBackupPath = Directory.CreateDirectory(strPath).FullName + "\\" + "backup_" + DateTime.Now.ToString("yyyyMMddHHmmss");
                     Directory.CreateDirectory(strBackupPath);
 
                     //Now Create all of the directories
-                    foreach (string dirPath in Directory.GetDirectories(TxtPath.Text, "*", SearchOption.AllDirectories))
+                    foreach (string dirPath in Directory.GetDirectories(strPath, "*", SearchOption.AllDirectories))
                     {
                         if (dirPath.Equals(strBackupPath))
                         {
                             continue;
                         }
-                        Directory.CreateDirectory(dirPath.Replace(TxtPath.Text, strBackupPath));
+                        Directory.CreateDirectory(dirPath.Replace(strPath, strBackupPath));
                     }
 
                     //Copy all the files & Replaces any files with the same name
-                    foreach (string newPath in Directory.GetFiles(TxtPath.Text, "*.*", SearchOption.AllDirectories))
+                    foreach (string newPath in Directory.GetFiles(strPath, "*.*", SearchOption.AllDirectories))
                     {
-                        File.Copy(newPath, newPath.Replace(TxtPath.Text, strBackupPath), true);
+                        File.Copy(newPath, newPath.Replace(strPath, strBackupPath), true);
                     }
                 }
 
@@ -1007,19 +1007,6 @@ namespace automatic_engine
         private void BtnHelp_Click(object sender, RoutedEventArgs e)
         {
             Process.Start("https://github.com/phamngocvinh/automatic-engine/wiki/Usage-Example");
-        }
-
-        /// <summary>
-        /// Drag move anywhere
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (sender is Window && e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
         }
     }
 }
