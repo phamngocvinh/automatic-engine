@@ -10,13 +10,15 @@
         <Image HorizontalAlignment="Left" Height="100" Margin="175,16,0,0" VerticalAlignment="Top" Width="100" Source="/icon-192x192.png"/>
         <Label Content="Automatic Engine" HorizontalAlignment="Left" Margin="171,121,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFD1DBE5"/>
         <Label x:Name="LblVersion" Content="version" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="184,152,188,0" VerticalAlignment="Top" FontWeight="Bold" FontStyle="Italic" Width="82" Foreground="#FFD1DBE5"/>
-        <Label Content="Created by Pham Ngoc Vinh under GPL-v3.0 License" HorizontalAlignment="Left" Margin="81,182,0,0" VerticalAlignment="Top" Foreground="#FFD1DBE5"/>
+        <Label Content="Created by                             under" HorizontalAlignment="Left" Margin="81,182,0,0" VerticalAlignment="Top" Foreground="#FFD1DBE5"/>
         <Label Content="Get the latest version at:" HorizontalAlignment="Left" Margin="84,248,0,0" VerticalAlignment="Top" Foreground="#FFD1DBE5"/>
         <TextBlock HorizontalAlignment="Left" Margin="226,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF5E81AC">
-            <Hyperlink NavigateUri="https://github.com/phamngocvinh/automatic-engine" RequestNavigate="Hyperlink_RequestNavigate">
+            <Hyperlink Foreground="#a3be8c" NavigateUri="https://github.com/phamngocvinh/automatic-engine" RequestNavigate="Hyperlink_RequestNavigate">
                 Official GitHub Repository
             </Hyperlink>
         </TextBlock>
         <Label Content="This software is free for everyone forever" HorizontalAlignment="Left" Margin="112,214,0,0" VerticalAlignment="Top" Foreground="#FFD1DBE5"/>
+        <TextBlock HorizontalAlignment="Left" Margin="147,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF5E81AC"><Hyperlink Foreground="#8fbcbb" NavigateUri="https://github.com/phamngocvinh" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="Pham Ngoc Vinh"/></Hyperlink></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="273,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="#FF5E81AC"><Hyperlink Foreground="#bf616a" NavigateUri="https://github.com/phamngocvinh/automatic-engine/blob/main/LICENSE" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="GPL-v3.0 License"/></Hyperlink></TextBlock>
     </Grid>
 </Window>
