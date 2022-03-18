@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b4916f99-909c-4b16-bd18-ab4ffd06b179": {
+      "ProjectGuid": "b4916f99-909c-4b16-bd18-ab4ffd06b179",
+      "DisplayName": "automatic-engine",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
